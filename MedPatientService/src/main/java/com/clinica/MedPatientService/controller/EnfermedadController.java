@@ -30,10 +30,8 @@ public class EnfermedadController {
         try {
             List<Enfermedad> medicos = enfermedadService.obtenerTodos();
             return  ResponseEntity.ok().body(medicos);
-        } catch (BussinesException e){
+        } catch (Exception e){
             return  ResponseEntity.badRequest().body("Error "+ e.getMessage());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
         }
     }
 
@@ -47,10 +45,8 @@ public class EnfermedadController {
         try {
             Enfermedad enfermedad = enfermedadService.obtenerPorId(id);
             return  ResponseEntity.ok().body(enfermedad);
-        } catch (BussinesException e){
+        } catch (Exception e){
             return  ResponseEntity.badRequest().body("Error "+ e.getMessage());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
         }
     }
 
@@ -97,7 +93,7 @@ public class EnfermedadController {
      * @param id Recibe el id de la enfermedad a borrar
      * @return ResponseEntity Devuelve esta entidad con el codigo de estado y un mensaje
      */
-    @PostMapping(value = "/borrar")
+    @DeleteMapping(value = "/borrar")
     public ResponseEntity<?> borrarEnfermedad(@RequestParam Long id){
         HashMap<String, String> response = new HashMap<>();
 

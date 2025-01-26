@@ -2,6 +2,7 @@ package com.clinica.MedPatientService.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Setter;
 
 /**
  * Clase Entidad de DiasLaborales

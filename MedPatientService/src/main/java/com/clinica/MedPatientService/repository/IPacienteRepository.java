@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface IPacienteRepository extends JpaRepository<Paciente, Long> {
 
-    @Query("SELECT p FROM Paciente p WHERE p.borrado = false")
+    @Query("SELECT p FROM Paciente p WHERE p.activo = false")
     @Override
     List<Paciente> findAll();
 }

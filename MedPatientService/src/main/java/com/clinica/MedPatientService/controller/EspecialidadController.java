@@ -1,60 +1,67 @@
 package com.clinica.MedPatientService.controller;
 
+import com.clinica.MedPatientService.dto.EspecialidadDTO;
+import com.clinica.MedPatientService.entity.Especialidad;
+import com.clinica.MedPatientService.service.IEspecialidadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.List;
+
+/**
+ * Clase controller para Especialidades
+ */
+@RestController
+@RequestMapping("/api/especialidad")
+@CrossOrigin(origins = "*")
 public class EspecialidadController {
 
     @Autowired
-    private IPacienteService pacienteService;
+    private IEspecialidadService especialidadService;
 
     /**
-     * Controlador para obtener todos los pacientes
-     * @return ResponseEntity Devuelve esta entidad con el codigo de estado y un listado de pacientes
+     * Controlador para obtener todas las especialidades
+     * @return ResponseEntity Devuelve esta entidad con el codigo de estado y un listado de especialidades
      */
-    @GetMapping(value = "/obtenerTodos")
-    public ResponseEntity<?> obtenerPacientes(){
+    @GetMapping(value = "/obtenerTodas")
+    public ResponseEntity<?> obtenerEspecialidades(){
         try {
-            List<Paciente> medicos = pacienteService.obtenerTodos();
-            return  ResponseEntity.ok().body(medicos);
-        } catch (BussinesException e){
+            List<Especialidad> especialidad = especialidadService.obtenerTodos();
+            return  ResponseEntity.ok().body(especialidad);
+        } catch (Exception e){
             return  ResponseEntity.badRequest().body("Error "+ e.getMessage());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
         }
     }
 
     /**
-     * Controlador para obtener un paciente por su id
-     * @param id Recibe el id del paciente
-     * @return ResponseEntity Devuelve esta entidad con el medico encontrado
+     * Controlador para obtener una especialidad por su id
+     * @param id Recibe el id de la especialidad
+     * @return ResponseEntity Devuelve esta entidad con la especialidad encontrada
      */
     @GetMapping(value = "/obtener")
-    public ResponseEntity<?> obtenerPacientePorId(@RequestParam Long id){
+    public ResponseEntity<?> obtenerEspecialidadPorId(@RequestParam Long id){
         try {
-            Paciente paciente = pacienteService.obtenerPorId(id);
-            return  ResponseEntity.ok().body(paciente);
-        } catch (BussinesException e){
-            return  ResponseEntity.badRequest().body("Error "+ e.getMessage());
+            Especialidad especialidad = especialidadService.obtenerPorId(id);
+            return  ResponseEntity.ok().body(especialidad);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     /**
-     * Controlador para registrar pacientes
-     * @param pacienteDTO Recibe los datos a registrar
+     * Controlador para registrar especialidades
+     * @param especialidadDTO Recibe los datos a registrar
      * @return ResponseEntity Devuelve esta entidad con el codigo de estado y un mensaje
      */
     @PostMapping(value = "/registro")
-    public ResponseEntity<?> registrarPaciente(@RequestBody PacienteDTO pacienteDTO){
+    public ResponseEntity<?> registrarPaciente(@RequestBody EspecialidadDTO especialidadDTO){
         HashMap<String, String> response = new HashMap<>();
 
         try {
-            pacienteService.crear(pacienteDTO);
-            response.put("msg", "Paciente registrado correctamente!");
+            especialidadService.crear(especialidadDTO);
+            response.put("msg", "Especialidad registrada correctamente!");
             return ResponseEntity.ok().body(response);
         } catch (Exception e){
             response.put("error", e.getMessage());
@@ -63,17 +70,17 @@ public class EspecialidadController {
     }
 
     /**
-     * Controlador para actualizar pacientes
-     * @param pacienteDTO Recibe los datos a actualizar
+     * Controlador para actualizar especialidades
+     * @param especialidadDTO Recibe los datos a actualizar
      * @return ResponseEntity Devuelve esta entidad con el codigo de estado y un mensaje
      */
     @PostMapping(value = "/actualizar")
-    public ResponseEntity<?> actualizarPaciente(@RequestBody PacienteDTO pacienteDTO){
+    public ResponseEntity<?> actualizarEspecialidad(@RequestBody EspecialidadDTO especialidadDTO){
         HashMap<String, String> response = new HashMap<>();
 
         try {
-            pacienteService.actualizar(pacienteDTO);
-            response.put("msg", "Paciente actualizado correctamente!");
+            especialidadService.actualizar(especialidadDTO);
+            response.put("msg", "Especialidad actualizada correctamente!");
             return ResponseEntity.ok().body(response);
         } catch (Exception e){
             response.put("error", e.getMessage());
@@ -82,17 +89,17 @@ public class EspecialidadController {
     }
 
     /**
-     * Controlador para suspender pacientes
-     * @param id Recibe el id del paciente a suspender
+     * Controlador para borrar especialidades
+     * @param id Recibe el id de la especialidad a borrar
      * @return ResponseEntity Devuelve esta entidad con el codigo de estado y un mensaje
      */
-    @PostMapping(value = "/suspender")
-    public ResponseEntity<?> suspenderPaciente(@RequestParam Long id){
+    @DeleteMapping(value = "/suspender")
+    public ResponseEntity<?> borrarEspecialidad(@RequestParam Long id){
         HashMap<String, String> response = new HashMap<>();
 
         try {
-            pacienteService.eliminar(id);
-            response.put("msg", "Paciente suspendido correctamente!");
+            especialidadService.eliminar(id);
+            response.put("msg", "Especialidad borrada correctamente!");
             return ResponseEntity.ok().body(response);
         } catch (Exception e){
             response.put("error", e.getMessage());

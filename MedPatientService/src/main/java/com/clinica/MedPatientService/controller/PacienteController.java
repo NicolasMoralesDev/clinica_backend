@@ -30,10 +30,8 @@ public class PacienteController {
         try {
             List<Paciente> medicos = pacienteService.obtenerTodos();
             return  ResponseEntity.ok().body(medicos);
-        } catch (BussinesException e){
+        } catch (Exception e){
             return  ResponseEntity.badRequest().body("Error "+ e.getMessage());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
         }
     }
 
@@ -47,10 +45,8 @@ public class PacienteController {
         try {
             Paciente paciente = pacienteService.obtenerPorId(id);
             return  ResponseEntity.ok().body(paciente);
-        } catch (BussinesException e){
+        } catch (Exception e){
             return  ResponseEntity.badRequest().body("Error "+ e.getMessage());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
         }
     }
 
@@ -97,7 +93,7 @@ public class PacienteController {
      * @param id Recibe el id del paciente a suspender
      * @return ResponseEntity Devuelve esta entidad con el codigo de estado y un mensaje
      */
-    @PostMapping(value = "/suspender")
+    @DeleteMapping(value = "/suspender")
     public ResponseEntity<?> suspenderPaciente(@RequestParam Long id){
         HashMap<String, String> response = new HashMap<>();
 

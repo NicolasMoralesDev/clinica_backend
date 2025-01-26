@@ -60,7 +60,6 @@ public class EnfermedadService implements IEnfermedadService {
         }
     }
 
-
     @Override
     @Transactional
     public void eliminar(Long id) throws Exception {
