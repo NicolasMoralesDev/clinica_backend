@@ -30,8 +30,8 @@ public abstract class Persona {
     @Column(name = "DIRECCION")
     private String direccion;
     @Column(name = "ACTIVO")
-    private boolean activo = false;
+    private boolean activo;
 
-    private String getNombreCompleto () { return this.nombre + this.apellido; }
+    private String getNombreCompleto () { return this.nombre + " " + this.apellido; }
 
 }

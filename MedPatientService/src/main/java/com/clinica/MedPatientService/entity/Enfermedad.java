@@ -2,6 +2,7 @@ package com.clinica.MedPatientService.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.DynamicInsert;
 
 /**
  * Clase Entidad de Enfermedad
@@ -9,6 +10,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "ENFERMEDAD")
+@DynamicInsert
 public class Enfermedad {
 
     @Id
