@@ -24,6 +24,7 @@ public class PacienteService implements IPacienteService {
     private IPacienteMapper pacienteMapper;
 
     @Override
+    @Transactional(readOnly = true)
     public List<Paciente> obtenerTodos() throws Exception {
         try {
             return pacienteRepository.findAll();
@@ -33,6 +34,7 @@ public class PacienteService implements IPacienteService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Paciente obtenerPorId(Long id) throws Exception {
         try {
             return pacienteRepository.findById(id).get();

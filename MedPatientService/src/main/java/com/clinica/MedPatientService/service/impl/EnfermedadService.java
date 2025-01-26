@@ -2,13 +2,12 @@ package com.clinica.MedPatientService.service.impl;
 
 import com.clinica.MedPatientService.dto.EnfermedadDTO;
 import com.clinica.MedPatientService.entity.Enfermedad;
-import com.clinica.MedPatientService.entity.Especialidad;
 import com.clinica.MedPatientService.mapper.IEnfermedadMapper;
 import com.clinica.MedPatientService.repository.IEnfermedadRepository;
 import com.clinica.MedPatientService.service.IEnfermedadService;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -25,6 +24,7 @@ public class EnfermedadService implements IEnfermedadService {
     private IEnfermedadMapper enfermedadMapper;
 
     @Override
+    @Transactional(readOnly = true)
     public List<Enfermedad> obtenerTodos() throws Exception {
         try {
             return enfermedadRepository.findAll();
@@ -34,6 +34,7 @@ public class EnfermedadService implements IEnfermedadService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Enfermedad obtenerPorId(Long id) throws Exception {
         try {
             return enfermedadRepository.findById(id).get();

@@ -5,9 +5,9 @@ import com.clinica.MedPatientService.entity.DiaLaboral;
 import com.clinica.MedPatientService.mapper.IDiaLaboralMapper;
 import com.clinica.MedPatientService.repository.IDiaLaboralRepository;
 import com.clinica.MedPatientService.service.IDiasLaboralesService;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -23,6 +23,7 @@ public class DiasLaboralesService implements IDiasLaboralesService {
     @Autowired
     private IDiaLaboralMapper diaLaboralMapper;
 
+    @Transactional(readOnly = true)
     @Override
     public List<DiaLaboral> obtenerTodos() throws Exception {
         try {
@@ -32,6 +33,7 @@ public class DiasLaboralesService implements IDiasLaboralesService {
         }
     }
 
+    @Transactional(readOnly = true)
     @Override
     public DiaLaboral obtenerPorId(Long id) throws Exception {
         try {

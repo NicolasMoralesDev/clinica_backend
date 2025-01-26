@@ -5,7 +5,7 @@ import com.clinica.MedPatientService.entity.Medico;
 import com.clinica.MedPatientService.mapper.IMedicoMapper;
 import com.clinica.MedPatientService.repository.IMedicoRepository;
 import com.clinica.MedPatientService.service.IMedicoService;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +24,7 @@ public class MedicoService implements IMedicoService {
     private IMedicoMapper medicoMapper;
 
     @Override
+    @Transactional(readOnly = true)
     public List<Medico> obtenerTodos() throws Exception {
         try {
             return medicoRepository.findAll();
@@ -33,6 +34,7 @@ public class MedicoService implements IMedicoService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Medico obtenerPorId(Long id) throws Exception {
         try {
             return medicoRepository.findById(id).get();

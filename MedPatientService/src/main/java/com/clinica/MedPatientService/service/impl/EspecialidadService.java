@@ -5,7 +5,7 @@ import com.clinica.MedPatientService.entity.Especialidad;
 import com.clinica.MedPatientService.mapper.IEspecialidadMapper;
 import com.clinica.MedPatientService.repository.IEspecialidadRepository;
 import com.clinica.MedPatientService.service.IEspecialidadService;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +24,7 @@ public class EspecialidadService implements IEspecialidadService {
     private IEspecialidadMapper especialidadMapper;
 
     @Override
+    @Transactional(readOnly = true)
     public List<Especialidad> obtenerTodos() throws Exception {
         try {
             return especialidadRepository.findAll();
@@ -33,6 +34,7 @@ public class EspecialidadService implements IEspecialidadService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Especialidad obtenerPorId(Long id) throws Exception {
         try {
             return especialidadRepository.findById(id).get();
