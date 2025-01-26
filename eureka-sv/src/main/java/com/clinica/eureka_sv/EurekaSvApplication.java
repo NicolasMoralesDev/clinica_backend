@@ -1,17 +1,18 @@
-package com.clinica.MedPatientService;
+package com.clinica.eureka_sv;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 /**
  * Clase Main del Servidor
  */
 @SpringBootApplication
-public class MedPatientServiceApplication {
+@EnableEurekaServer
+public class EurekaSvApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MedPatientServiceApplication.class, args);
+		SpringApplication.run(EurekaSvApplication.class, args);
 	}
 
 }
