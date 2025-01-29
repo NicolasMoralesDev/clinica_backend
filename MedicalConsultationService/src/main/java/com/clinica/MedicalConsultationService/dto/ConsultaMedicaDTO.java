@@ -13,6 +13,8 @@ public class ConsultaMedicaDTO {
 
     private LocalDate fechaTurno;
     private LocalTime horaTurno;
+    private Long medico;
+    private Long paciente;
     private double montoTotal;
     private boolean pagado;
     private boolean borrado;

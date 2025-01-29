@@ -23,10 +23,12 @@ public class ConsultaMedica {
     private LocalDate fechaTurno;
     @Column(name = "HORA_TURNO")
     private LocalTime horaTurno;
+    @Column(name = "MEDICO_ID")
+    private Long medico;
+    @Column(name = "PACIENTE_ID")
+    private Long paciente;
     @Column(name = "MONTO_TOTAL")
     private double montoTotal;
-    @Column(name = "PAGADO")
-    private boolean pagado;
     @Column(name = "BORRADO")
     private boolean borrado;
 
