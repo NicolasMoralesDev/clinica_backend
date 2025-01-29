@@ -10,9 +10,9 @@
 	</parent>
 	<groupId>com.clinica</groupId>
 	<artifactId>MedPatientService</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>MedPatientService</name>
-	<description>Servicio para gestionar informacion de medicos y pacientes</description>
+	<description>Micro servicio para gestionar informacion de medicos y pacientes</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -30,6 +30,7 @@
 		<url/>
 	</scm>
 	<properties>
+		<revision>1.0.0</revision>
 		<java.version>17</java.version>
 		<spring-cloud.version>2024.0.0</spring-cloud.version>
 	</properties>
@@ -42,6 +43,12 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
+		</dependency>
+		<!-- Model Mapper para mapepo de clases -->
+		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+			<version>3.2.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -63,6 +70,7 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
