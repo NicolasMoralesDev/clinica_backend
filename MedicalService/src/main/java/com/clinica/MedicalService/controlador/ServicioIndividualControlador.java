@@ -1,6 +1,7 @@
 package com.clinica.MedicalService.controlador;
 
 import com.clinica.MedicalService.DTO.ServicioIndividualDTO;
+import com.clinica.MedicalService.Excepciones.ServicioIndividualNoEncontradaExcepcion;
 import com.clinica.MedicalService.modelo.ServicioIndividual;
 import com.clinica.MedicalService.servicio.ServicioIndividualServicio;
 import lombok.RequiredArgsConstructor;
@@ -26,13 +27,14 @@ public class ServicioIndividualControlador {
     @GetMapping("/{id}")
     public ResponseEntity<ServicioIndividual> obtenerPorId(@PathVariable Long id){
         ServicioIndividual servicioIndividual = servicioIndividualServicio.obtenerPorId(id);
+        if( servicioIndividual == null ) throw new ServicioIndividualNoEncontradaExcepcion("El servicio no existe");
         return ResponseEntity.ok(servicioIndividual);
     }
 
     @PostMapping
     public ResponseEntity<ServicioIndividual> crearServicioIndividual(@RequestBody ServicioIndividualDTO dto){
         ServicioIndividual servicioIndividual = servicioIndividualServicio.crear(dto);
-        return ResponseEntity.ok(servicioIndividual);
+        return ResponseEntity.created(URI.create("/servicio-individual" + servicioIndividual.getIdServicio())).body(servicioIndividual);
     }
 
     @PatchMapping("/{id}")

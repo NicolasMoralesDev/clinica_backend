@@ -1,6 +1,7 @@
 package com.clinica.MedicalService.controlador;
 
 import com.clinica.MedicalService.DTO.PaqueteDTO;
+import com.clinica.MedicalService.Excepciones.PaqueteNoEncontradoExcepcion;
 import com.clinica.MedicalService.modelo.Paquete;
 import com.clinica.MedicalService.servicio.PaqueteServicio;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,7 @@ public class PaqueteControlador {
     @GetMapping("/{id}")
     public ResponseEntity<Paquete> obtenerPorId(@PathVariable Long id){
         Paquete paquete = paqueteServicio.obtenerPorId(id);
+        if(paquete == null) throw new PaqueteNoEncontradoExcepcion("El paquete no existe");
         return ResponseEntity.ok(paquete);
     }
 

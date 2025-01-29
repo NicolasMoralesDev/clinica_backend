@@ -1,6 +1,7 @@
 package com.clinica.MedicalService.controlador;
 
 import com.clinica.MedicalService.DTO.CategoriaDTO;
+import com.clinica.MedicalService.Excepciones.CategoriaNoEncontradaExcepcion;
 import com.clinica.MedicalService.modelo.Categoria;
 import com.clinica.MedicalService.servicio.CategoriaServicio;
 import jakarta.ws.rs.Path;
@@ -28,6 +29,7 @@ public class CategoriaControlador {
     @GetMapping("/{id}")
     public ResponseEntity<Categoria> obtenerCategoriaPorId(@PathVariable Long id){
         Categoria categoria = categoriaServicio.obtenerPorId(id);
+        if(categoria == null) throw new CategoriaNoEncontradaExcepcion("La categoria no existe");
         return ResponseEntity.ok(categoria);
     }
 
