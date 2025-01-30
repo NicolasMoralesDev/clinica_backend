@@ -25,7 +25,7 @@ public class Factura {
     private Long idPaciente;
     private LocalDate fechaEmision;
 
-    @ManyToOne
+    @OneToMany
     @JoinColumn(name = "fk_medio_pago")
     private MedioDePago medioDePago;
 
