@@ -90,7 +90,6 @@ public class PaqueteServicio implements IPaqueteServicio {
         double precio = 0;
 
         for (ServicioIndividual item: paquete.getServicios()) {
-            System.out.println(item.getPrecio());
             precio += item.getPrecio();
         }
 

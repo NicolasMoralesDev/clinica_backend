@@ -38,5 +38,10 @@ public class FacturaControlador {
         return ResponseEntity.created(URI.create("/factura/" + factura.getIdFactura())).body(factura);
     }
 
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> actualizar (@PathVariable Long id, FacturaDTO dto){
+        facturaServicio.actualizar(id,dto);
+        return ResponseEntity.ok("Factura actualizada");
+    }
 
 }

@@ -16,7 +16,7 @@ public class FacturaDTO {
 
     private Long tipoFactura;
     private Long idPaciente;
-    private Long medioDePago;
+    //detalles --> Es un array con los id de los turnos que el paciente quiere abonar
     private List<FacturaDetalleDTO> detalles;
 
 }

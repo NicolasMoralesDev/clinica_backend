@@ -41,17 +41,11 @@ public class ServicioIndividualServicio implements IServicioIndividualServicio {
      */
     @Override
     public ServicioIndividual crear(ServicioIndividualDTO dto) {
-        try{
+        Categoria categoria = categoriaServicio.obtenerPorId(dto.getCategoria());
+        if(categoria == null) throw new CategoriaNoEncontradaExcepcion("La categoria no existe");
 
-            Categoria categoria = categoriaServicio.obtenerPorId(dto.getCategoria());
-            if(categoria == null) throw new CategoriaNoEncontradaExcepcion("La categoria no existe");
-
-            ServicioIndividual servicioIndividual = servicioIndividualMapper.toEntity(dto, categoria);
-            return servicioIndividualRepositorio.save(servicioIndividual);
-        }catch (Exception e){
-            e.printStackTrace();
-            return null;
-        }
+        ServicioIndividual servicioIndividual = servicioIndividualMapper.toEntity(dto, categoria);
+        return servicioIndividualRepositorio.save(servicioIndividual);
     }
 
 
