@@ -28,6 +28,18 @@ jobs:
     - name: Eureka server
       working-directory: eureka-sv
       run: mvn -B package --file pom.xml
+    - name: Finance service
+      working-directory: finance-service
+      run: mvn -B package --file pom.xml
+    - name: Medical service
+      working-directory: Medical Service
+      run: mvn -B package --file pom.xml
+    - name: Medical Consultation Service
+      working-directory: MedicalConsultationService
+      run: mvn -B package --file pom.xml
+    - name: Med Patient Service
+      working-directory: MedPatientService
+      run: mvn -B package --file pom.xml
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
