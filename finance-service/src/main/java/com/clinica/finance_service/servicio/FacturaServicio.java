@@ -3,6 +3,7 @@ package com.clinica.finance_service.servicio;
 import com.clinica.finance_service.DTO.ConsultaMedicaDTO;
 import com.clinica.finance_service.DTO.FacturaDTO;
 import com.clinica.finance_service.DTO.FacturaDetalleDTO;
+import com.clinica.finance_service.DTO.PacienteDTO;
 import com.clinica.finance_service.Excepciones.FacturaBorradaExcepcion;
 import com.clinica.finance_service.Excepciones.FacturaPagadaExcepcion;
 import com.clinica.finance_service.Excepciones.FacturaNoEncontradaExcepcion;
@@ -12,7 +13,10 @@ import com.clinica.finance_service.modelo.FacturaDetalle;
 import com.clinica.finance_service.modelo.TipoFactura;
 import com.clinica.finance_service.repositorio.FacturaDetalleRepositorio;
 import com.clinica.finance_service.repositorio.FacturaRepositorio;
+import com.clinica.finance_service.repositorio.IPacientesAPI;
 import com.clinica.finance_service.repositorio.ITurnosAPI;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,6 +34,7 @@ public class FacturaServicio implements IFacturaServicio{
     private final TipoFacturaServicio tipoFacturaServicio;
 
     private final ITurnosAPI iTurnosAPI;
+    private final IPacientesAPI iPacientesAPI;
 
     @Override
     @Transactional(readOnly = true)
@@ -47,11 +52,11 @@ public class FacturaServicio implements IFacturaServicio{
     @Transactional
     public Factura crear(FacturaDTO dto) {
         TipoFactura tipoFactura = tipoFacturaServicio.obtenerPorId(dto.getTipoFactura());
-        List<ConsultaMedicaDTO> listaTurnos = iTurnosAPI.getConsultasMedicas();
-
-        System.out.println(listaTurnos);
-
         if(tipoFactura == null) throw new TipoFacturaNoEncontradoExcepcion("La factura no existe");
+
+        //Obtengo el paciente para verificar si cuenta con obra social
+        PacienteDTO paciente = obtenerPaciente(dto.getIdPaciente());
+        System.out.println(paciente);
 
         Factura factura = new Factura();
         factura.setPagado(false);
@@ -65,16 +70,17 @@ public class FacturaServicio implements IFacturaServicio{
         //Proceso los detalles
         List<FacturaDetalle> detalleList = new ArrayList<>();
         for(FacturaDetalleDTO detalleDTO : dto.getDetalles()){
-            //Obtengo el turno de la api de turnos
-//            TurnoDTO turno = turnoApi.obtenerPorId(detalleDTO.getIdTurno());
+
+            //Obtengo el turno de la api de turnos para obtener el precio
+            ConsultaMedicaDTO turno = obtenerConsultaMedica(detalleDTO.getIdTurno());
 
             FacturaDetalle detalle = new FacturaDetalle();
             detalle.setFactura(factura);
-            detalle.setIdTurno(detalleDTO.getIdTurno()); // PENDIENTE PERSISTIR EL ID DEL TURNO OBTENIDO DEL MICROSERVICIO TURNOS
-            detalle.setPrecio(12500D); // PENDIENTE PERSISTIR EL PRECIO DEL TURNO OBTENIDO DEL MICROSERVICIO TURNOS --> HACER DESCUENTO EN CASO DE TENER OBRA SOCIAL
+            detalle.setIdTurno(turno.getId());
+            detalle.setPrecio(turno.getMontoTotal()); // --> HACER DESCUENTO EN CASO DE TENER OBRA SOCIAL
             detalle.setBorrado(false);
             detalleList.add(detalle);
-            total += 12500D; //PENDIENTE PERSISTIR LA SUMATORIA DEL PRECIO DE LOS TURNOS OBTENIDO DEL MICROSERVICIO TURNOS
+            total += turno.getMontoTotal(); //PENDIENTE PERSISTIR LA SUMATORIA DEL PRECIO DE LOS TURNOS OBTENIDO DEL MICROSERVICIO TURNOS
         }
 
         //Guardo los detalles en la base de datos
@@ -169,4 +175,30 @@ public class FacturaServicio implements IFacturaServicio{
         if(factura == null) throw new FacturaNoEncontradaExcepcion("La factura no existe");
         factura.setPagado(true);
     }
+
+
+    @CircuitBreaker(name = "MedicalConsultationService", fallbackMethod = "fallbackMedicalConsultationService")
+    @Retry(name = "MedicalConsultationService")
+    public ConsultaMedicaDTO obtenerConsultaMedica(Long idTurno){
+        ConsultaMedicaDTO turno = iTurnosAPI.getConsultasMedicasPorId(idTurno);
+        return turno;
+    }
+
+
+
+    @CircuitBreaker(name = "MedPatientService", fallbackMethod = "fallbackMedPatientService")
+    @Retry(name = "MedPatientService")
+    public PacienteDTO obtenerPaciente(Long idPaciente){
+        PacienteDTO paciente = iPacientesAPI.getPacienteById(idPaciente);
+        return paciente;
+    }
+
+    public ConsultaMedicaDTO fallbackMedicalConsultationService(Long idTurno, Throwable t){
+        return new ConsultaMedicaDTO();
+    }
+
+    public PacienteDTO fallbackMedPatientService(Long idPaciente, Throwable t){
+        return new PacienteDTO();
+    }
+
 }
