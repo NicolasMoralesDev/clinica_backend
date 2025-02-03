@@ -24,11 +24,6 @@ public class Factura {
 
     private Long idPaciente;
     private LocalDate fechaEmision;
-
-    @ManyToOne
-    @JoinColumn(name = "fk_medio_pago")
-    private MedioDePago medioDePago;
-
     @OneToMany(mappedBy = "factura", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<FacturaDetalle> detalles = new ArrayList<>();
     private Boolean pagado;

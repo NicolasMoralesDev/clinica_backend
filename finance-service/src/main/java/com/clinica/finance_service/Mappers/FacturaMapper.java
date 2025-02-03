@@ -13,12 +13,12 @@ import java.util.List;
 @Component
 public class FacturaMapper {
 
-    public Factura toEntity(FacturaDTO dto, List<FacturaDetalle> facturaDetalleList, TipoFactura tipoFactura, MedioDePago medioDePago){
+    public Factura toEntity(FacturaDTO dto, List<FacturaDetalle> facturaDetalleList, TipoFactura tipoFactura){
         return Factura.builder()
                 .tipoFactura(tipoFactura)
-                .medioDePago(medioDePago)
                 .detalles(facturaDetalleList)
                 .borrado(false)
+                .pagado(false)
                 .build();
     }
 

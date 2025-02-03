@@ -1,26 +1,27 @@
 package com.clinica.finance_service.modelo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-public class FacturaDetalle {
+@Builder
+public class Cobro {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idFacturaDetalle;
+    private Long id;
     @ManyToOne
-    @JoinColumn(name = "fk_factura", nullable = false)
-    @JsonIgnore
+    @JoinColumn(name = "fk_factura")
     private Factura factura;
-    private Long idTurno;
-    private Double precio;
+    @ManyToOne
+    @JoinColumn(name = "fk_medio_de_pago")
+    private MedioDePago medioDePago;
+    private Double monto;
     private Boolean borrado;
+    private Boolean bloqueado;
+
 
 }

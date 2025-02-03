@@ -41,4 +41,33 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(CobroNoEncontradoExcepcion.class)
+    public ResponseEntity<RespuestaError> handleFacturaNoEncontradaException(CobroNoEncontradoExcepcion ex){
+        RespuestaError respuesta = new RespuestaError("COBRO_NO_ENCONTRADO", ex.getMessage());
+        return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(FacturaPagadaExcepcion.class)
+    public ResponseEntity<RespuestaError> handleFacturaBloqueadaException(FacturaPagadaExcepcion ex){
+        RespuestaError respuesta = new RespuestaError("FACTURA_BLOQUEADA", ex.getMessage());
+        return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(CobroBloqueadoExcepcion.class)
+    public ResponseEntity<RespuestaError> handleCobroBloqueadoException(CobroBloqueadoExcepcion ex){
+        RespuestaError respuesta = new RespuestaError("COBRO_BLOQUEADO", ex.getMessage());
+        return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(FacturaBorradaExcepcion.class)
+    public ResponseEntity<RespuestaError> handleFacturaBorradaException(FacturaBorradaExcepcion ex){
+        RespuestaError respuesta = new RespuestaError("FACTURA_ELIMINADA", ex.getMessage());
+        return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(CobroBorradoExcepcion.class)
+    public ResponseEntity<RespuestaError> handleCobroBorradoException(CobroBorradoExcepcion ex){
+        RespuestaError respuesta = new RespuestaError("COBRO_ELIMINADO", ex.getMessage());
+        return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);
+    }
+
+
 }
