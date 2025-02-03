@@ -45,7 +45,10 @@ public class CobroServicio implements ICobroServicio {
         if(medioDePago == null) throw new MedioDePagoNoEncontradoExcepcion("El medio de pago no existe");
 
         Cobro cobro = cobroMapper.toEntity(dto, factura, medioDePago);
-        return cobroRepositorio.save(cobro);
+        Cobro cobroGuardado = cobroRepositorio.save(cobro);
+        verificarTotalidadDelCobro(factura.getIdFactura());
+
+        return cobroGuardado;
     }
 
     @Override
@@ -54,6 +57,7 @@ public class CobroServicio implements ICobroServicio {
         Cobro cobro = this.obtenerPorId(id);
         if(cobro == null) throw new CobroNoEncontradoExcepcion();
         if(cobro.getBloqueado()) throw new CobroBloqueadoExcepcion();
+        if(cobro.getBorrado()) throw new CobroBorradoExcepcion();
 
         MedioDePago medioDePago = medioDePagoServicio.obtenerPorId(dto.getMedioDePago());
         if(medioDePago == null) throw new MedioDePagoNoEncontradoExcepcion("El medio de pago no existe");
@@ -61,6 +65,7 @@ public class CobroServicio implements ICobroServicio {
 
         if(cobro.getMonto() != null && cobro.getMonto() != dto.getMonto()) cobro.setMonto(dto.getMonto());
 
+        verificarTotalidadDelCobro(dto.getFactura());
         return cobro;
     }
 
@@ -69,18 +74,19 @@ public class CobroServicio implements ICobroServicio {
     public void eliminar(Long id) {
         Cobro cobro = this.obtenerPorId(id);
         if(cobro == null) throw new CobroNoEncontradoExcepcion();
+        if(cobro.getBloqueado()) throw new CobroBloqueadoExcepcion();
         cobro.setBorrado(true);
     }
 
     /**
-     * <p>Este metodo se encarga de marcar la {@link Factura} como pagada y
-     * los cobros vinculados a la misma, en caso de que el paciente haya abonado la totalidad del servicio</p>
+     * <p>Este metodo se encarga de verificar y marcar la {@link Factura} como pagada junto a
+     * los cobros vinculados de la misma, en caso de que el paciente haya abonado la totalidad del servicio</p>
      * @param idFactura
      * @return
      */
     @Override
     @Transactional
-    public List<Cobro> bloquearCobros(Long idFactura) {
+    public List<Cobro> verificarTotalidadDelCobro(Long idFactura) {
         Factura factura = facturaServicio.obtenerPorId(idFactura);
         if(factura == null) throw new FacturaNoEncontradaExcepcion("La factura no existe");
 

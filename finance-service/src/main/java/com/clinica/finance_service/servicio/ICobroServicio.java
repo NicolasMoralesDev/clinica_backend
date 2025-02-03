@@ -14,7 +14,7 @@ public interface ICobroServicio {
     Cobro actualizar(Long id , CobroDTO dto);
     void eliminar(Long id);
 
-    List<Cobro> bloquearCobros(Long idFactura);
+    List<Cobro> verificarTotalidadDelCobro(Long idFactura);
 
 
 }

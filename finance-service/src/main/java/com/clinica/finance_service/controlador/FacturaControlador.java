@@ -39,9 +39,15 @@ public class FacturaControlador {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<?> actualizar (@PathVariable Long id, FacturaDTO dto){
-        facturaServicio.actualizar(id,dto);
-        return ResponseEntity.ok("Factura actualizada");
+    public ResponseEntity<Factura> actualizar (@PathVariable Long id, @RequestBody FacturaDTO dto){
+        Factura factura = facturaServicio.actualizar(id,dto);
+        return ResponseEntity.ok(factura);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> eliminar(@PathVariable Long id){
+        facturaServicio.eliminar(id);
+        return ResponseEntity.ok("Se ha eliminado el registro correctamente");
     }
 
 }

@@ -58,5 +58,16 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(FacturaBorradaExcepcion.class)
+    public ResponseEntity<RespuestaError> handleFacturaBorradaException(FacturaBorradaExcepcion ex){
+        RespuestaError respuesta = new RespuestaError("FACTURA_ELIMINADA", ex.getMessage());
+        return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(CobroBorradoExcepcion.class)
+    public ResponseEntity<RespuestaError> handleCobroBorradoException(CobroBorradoExcepcion ex){
+        RespuestaError respuesta = new RespuestaError("COBRO_ELIMINADO", ex.getMessage());
+        return new ResponseEntity<>(respuesta, HttpStatus.BAD_REQUEST);
+    }
+
 
 }

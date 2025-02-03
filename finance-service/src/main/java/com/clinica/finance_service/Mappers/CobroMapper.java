@@ -14,6 +14,8 @@ public class CobroMapper {
                 .factura(factura)
                 .medioDePago(medioDePago)
                 .monto(dto.getMonto())
+                .bloqueado(false)
+                .borrado(false)
                 .build();
     }
 
