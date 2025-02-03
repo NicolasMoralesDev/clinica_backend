@@ -2,6 +2,7 @@ package com.clinica.MedicalConsultationService.service.impl;
 
 import com.clinica.MedicalConsultationService.dto.ConsultaMedicaDTO;
 import com.clinica.MedicalConsultationService.entity.ConsultaMedica;
+import com.clinica.MedicalConsultationService.mapper.IConsultaMedicaMapper;
 import com.clinica.MedicalConsultationService.repository.IConsultaMedicaRepository;
 import com.clinica.MedicalConsultationService.service.IConsultaMedicaSerice;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class ConsultaMedicaService implements IConsultaMedicaSerice {
 
     @Autowired
     private IConsultaMedicaRepository consultaMedicaRepository;
+
+    @Autowired
+    private IConsultaMedicaMapper consultaMedicaMapper;
 
     @Transactional(readOnly = true)
     @Override
@@ -43,7 +47,7 @@ public class ConsultaMedicaService implements IConsultaMedicaSerice {
     @Override
     public ConsultaMedica crear(ConsultaMedicaDTO consultaMedicaDTO) throws Exception {
         try {
-            return consultaMedicaRepository.save(diaLaboralMapper.diaLaboralDtoADiasLaboral(consultaMedicaDTO));
+            return consultaMedicaRepository.save(consultaMedicaMapper.consultaMedicaDtoAConsultaMedica(consultaMedicaDTO));
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
@@ -52,7 +56,7 @@ public class ConsultaMedicaService implements IConsultaMedicaSerice {
     @Override
     public ConsultaMedica actualizar(ConsultaMedicaDTO consultaMedicaDTO) throws Exception {
         try {
-            return consultaMedicaRepository.save(diaLaboralMapper.diaLaboralDtoADiasLaboral(consultaMedicaDTO));
+            return consultaMedicaRepository.save(consultaMedicaMapper.consultaMedicaDtoAConsultaMedica(consultaMedicaDTO));
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
