@@ -11,4 +11,5 @@ import java.util.Set;
 @Data
 public class PacienteDTO extends PersonaDTO {
     private Set<EnfermedadDTO> enfermedades;
+    private boolean obraSocial;
 }

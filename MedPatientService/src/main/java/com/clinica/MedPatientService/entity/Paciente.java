@@ -16,4 +16,6 @@ public class Paciente extends Persona {
     @Column(name = "ENFERMEDAD")
     @ManyToMany
     private Set<Enfermedad> enfermedad;
+    @Column(name = "OBRA_SOCIAL")
+    private boolean obraSocial;
 }
