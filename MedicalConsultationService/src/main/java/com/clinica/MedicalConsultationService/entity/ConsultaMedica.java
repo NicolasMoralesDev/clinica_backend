@@ -27,6 +27,8 @@ public class ConsultaMedica {
     private Long medico;
     @Column(name = "PACIENTE_ID")
     private Long paciente;
+    @Column(name = "SERVICIO_INDIVIDUAL_ID")
+    private Long servicioIndividual;
     @Column(name = "MONTO_TOTAL")
     private double montoTotal;
     @Column(name = "BORRADO")
