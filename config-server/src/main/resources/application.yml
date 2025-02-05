@@ -9,5 +9,5 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/NicolasMoralesDev/clinica_backend/tree/feature/config-server
+          uri: https://github.com/LucasCaro97/clinica_back
           searchPaths: config-data
