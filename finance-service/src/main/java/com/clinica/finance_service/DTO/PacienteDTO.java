@@ -1,5 +1,6 @@
 package com.clinica.finance_service.DTO;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -9,6 +10,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PacienteDTO {
 
     private Long id;
@@ -20,5 +22,6 @@ public class PacienteDTO {
     private String telefono;
     private String direccion;
     private boolean activo;
+    private boolean obraSocial;
 
 }

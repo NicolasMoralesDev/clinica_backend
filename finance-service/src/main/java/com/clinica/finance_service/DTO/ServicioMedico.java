@@ -1,18 +1,13 @@
-package com.clinica.MedicalService.modelo;
+package com.clinica.finance_service.DTO;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
-@Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@SuperBuilder
-@NoArgsConstructor
 @Getter
 @Setter
+@ToString
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME,
         property = "tipo"
 )
@@ -23,13 +18,10 @@ import lombok.experimental.SuperBuilder;
 )
 public abstract class ServicioMedico {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String tipo;
     private Long idServicio;
-    @Column(nullable = false, unique = true)
     private String nombre;
-    @Column(nullable = false, unique = true)
     private String codigo;
-    @Column(nullable = false)
     private String descripcion;
     private Boolean borrado;
     private Double precio;
