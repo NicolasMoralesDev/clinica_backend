@@ -1,5 +1,6 @@
 package com.clinica.MedicalService.modelo;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -14,8 +15,6 @@ import lombok.experimental.SuperBuilder;
 public class ServicioIndividual extends ServicioMedico {
 
 
-    @Column(nullable = false)
-    private Double precio;
     @ManyToOne
     @JoinColumn(name = "fk_categoria", nullable = false)
     private Categoria categoria;

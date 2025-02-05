@@ -2,7 +2,6 @@ package com.clinica.MedicalService.controlador;
 
 import com.clinica.MedicalService.modelo.ServicioMedico;
 import com.clinica.MedicalService.servicio.ServicioMedicoServicio;
-import jakarta.ws.rs.Path;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,9 +1,6 @@
 package com.clinica.finance_service.servicio;
 
-import com.clinica.finance_service.DTO.ConsultaMedicaDTO;
-import com.clinica.finance_service.DTO.FacturaDTO;
-import com.clinica.finance_service.DTO.FacturaDetalleDTO;
-import com.clinica.finance_service.DTO.PacienteDTO;
+import com.clinica.finance_service.DTO.*;
 import com.clinica.finance_service.Excepciones.FacturaBorradaExcepcion;
 import com.clinica.finance_service.Excepciones.FacturaPagadaExcepcion;
 import com.clinica.finance_service.Excepciones.FacturaNoEncontradaExcepcion;
@@ -11,10 +8,7 @@ import com.clinica.finance_service.Excepciones.TipoFacturaNoEncontradoExcepcion;
 import com.clinica.finance_service.modelo.Factura;
 import com.clinica.finance_service.modelo.FacturaDetalle;
 import com.clinica.finance_service.modelo.TipoFactura;
-import com.clinica.finance_service.repositorio.FacturaDetalleRepositorio;
-import com.clinica.finance_service.repositorio.FacturaRepositorio;
-import com.clinica.finance_service.repositorio.IPacientesAPI;
-import com.clinica.finance_service.repositorio.ITurnosAPI;
+import com.clinica.finance_service.repositorio.*;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
@@ -35,6 +29,7 @@ public class FacturaServicio implements IFacturaServicio{
 
     private final ITurnosAPI iTurnosAPI;
     private final IPacientesAPI iPacientesAPI;
+    private final IServicioMedicoAPI iServicioMedicoAPI;
 
     @Override
     @Transactional(readOnly = true)
@@ -56,7 +51,6 @@ public class FacturaServicio implements IFacturaServicio{
 
         //Obtengo el paciente para verificar si cuenta con obra social
         PacienteDTO paciente = obtenerPaciente(dto.getIdPaciente());
-        System.out.println(paciente);
 
         Factura factura = new Factura();
         factura.setPagado(false);
@@ -66,21 +60,28 @@ public class FacturaServicio implements IFacturaServicio{
         factura.setBorrado(false);
         facturaRepositorio.save(factura);
 
-        Double total = 0D;
+        double total = 0D;
         //Proceso los detalles
         List<FacturaDetalle> detalleList = new ArrayList<>();
         for(FacturaDetalleDTO detalleDTO : dto.getDetalles()){
 
             //Obtengo el turno de la api de turnos para obtener el precio
             ConsultaMedicaDTO turno = obtenerConsultaMedica(detalleDTO.getIdTurno());
+            ServicioMedico servicio = iServicioMedicoAPI.getById(turno.getServicioIndividual());
+
+            System.out.println("----");
+            System.out.println(servicio);
 
             FacturaDetalle detalle = new FacturaDetalle();
             detalle.setFactura(factura);
             detalle.setIdTurno(turno.getId());
-            detalle.setPrecio(turno.getMontoTotal()); // --> HACER DESCUENTO EN CASO DE TENER OBRA SOCIAL
+            //Realizo el descuento del 20% en casi de tener obraSocial
+            if(paciente.isObraSocial()) detalle.setPrecio(servicio.getPrecio() * 0.80 );
+            else detalle.setPrecio(servicio.getPrecio());
             detalle.setBorrado(false);
             detalleList.add(detalle);
-            total += turno.getMontoTotal(); //PENDIENTE PERSISTIR LA SUMATORIA DEL PRECIO DE LOS TURNOS OBTENIDO DEL MICROSERVICIO TURNOS
+            //Actualizo el total de los detalles para luego persistirlo en la factura
+            total += detalle.getPrecio();
         }
 
         //Guardo los detalles en la base de datos

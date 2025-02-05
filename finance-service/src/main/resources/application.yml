@@ -3,9 +3,9 @@ spring:
     name: finance-service
 
   datasource:
-    url: jdbc:mysql://localhost:3306/facturacion
-    username: root
-    password: root
+    url: jdbc:mysql://${BD}
+    username: ${USER_BD}
+    password: ${PASSWORD_BD}
 
   jpa:
     hibernate:
