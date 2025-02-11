@@ -12,6 +12,14 @@ spring:
       ddl-auto: update
     database-platform: org.hibernate.dialect.MySQLDialect
 
+  #Keycloak Config
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9090/realms/spring-boot-real-dev
+          jwk-set-uri: http://localhost:9090/realms/spring-boot-real-dev/protocol/openid-connect/certs
+
 server:
   port: 8081
 
@@ -19,3 +27,9 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+
+jwt:
+  auth:
+    converter:
+      principle-attribute: preferred_username
+      resource-id: spring-client-api-rest-clinica

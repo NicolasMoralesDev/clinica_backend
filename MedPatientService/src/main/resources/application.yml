@@ -13,8 +13,21 @@ spring:
     url: jdbc:mysql://${BD}
     username: ${USER_BD}
     password: ${PASSWORD_BD}
+  #Keycloak Config
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9090/realms/spring-boot-real-dev
+          jwk-set-uri: http://localhost:9090/realms/spring-boot-real-dev/protocol/openid-connect/certs
 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+
+jwt:
+  auth:
+    converter:
+      principle-attribute: preferred_username
+      resource-id: spring-client-api-rest-clinica

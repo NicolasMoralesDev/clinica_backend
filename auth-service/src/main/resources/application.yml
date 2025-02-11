@@ -1,16 +1,16 @@
+server:
+  port: 8085
+
 spring:
   application:
-    name: medical-service
+    name: auth-service
 
+  #Database Config
   datasource:
     url: jdbc:mysql://${BD}
     username: ${USER_BD}
     password: ${PASSWORD_BD}
 
-  jpa:
-    hibernate:
-      ddl-auto: update
-    database-platform: org.hibernate.dialect.MySQLDialect
 
   #Keycloak Config
   security:
@@ -20,13 +20,18 @@ spring:
           issuer-uri: http://localhost:9090/realms/spring-boot-real-dev
           jwk-set-uri: http://localhost:9090/realms/spring-boot-real-dev/protocol/openid-connect/certs
 
-server:
-  port: 8082
+logging:
+  level:
+    org:
+      keycloack: DEBUG
 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+
+
+      default-zone: http://localhost:8761/eureka
 
 jwt:
   auth:
