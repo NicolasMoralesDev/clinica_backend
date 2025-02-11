@@ -1,4 +1,4 @@
-package com.clinica.auth_service.config;
+package com.clinica.MedicalService.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
