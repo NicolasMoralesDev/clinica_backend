@@ -5,10 +5,10 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 #Copiamos el archivo JAR al contenedor
-COPY target/MedPatientService-1.0.0.jar app.jar
+COPY target/MedicalService-0.0.1.jar app.jar
 
 #Exponemos el puerto en el que corre el servicio
-EXPOSE 8083
+EXPOSE 8082
 
 #Comando para ejecutar la aplicacion
 ENTRYPOINT ["java", "-jar", "app.jar"]

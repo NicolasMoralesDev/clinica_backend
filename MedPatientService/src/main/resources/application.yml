@@ -1,11 +1,11 @@
 version: "@project.version@"
 
 server:
-  port: 9007
+  port: 8083
 
 spring:
   application:
-    name: MedPatientService
+    name: medpatient-service
   jpa:
     hibernate:
       ddl: auto
