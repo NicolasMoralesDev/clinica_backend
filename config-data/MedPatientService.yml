@@ -1,0 +1,20 @@
+version: "@project.version@"
+
+server:
+  port: 9007
+
+spring:
+  application:
+    name: MedPatientService
+  jpa:
+    hibernate:
+      ddl: auto
+  datasource:
+    url: jdbc:mysql://${BD}
+    username: ${USER_BD}
+    password: ${PASSWORD_BD}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka

@@ -1,5 +1,6 @@
 package com.clinica.MedicalService.servicio;
 
+import com.clinica.MedicalService.DTO.PaqueteConPrecioDTOResponse;
 import com.clinica.MedicalService.DTO.PaqueteDTO;
 import com.clinica.MedicalService.Excepciones.PaqueteNoEncontradoExcepcion;
 import com.clinica.MedicalService.mapper.PaqueteMapper;
@@ -80,5 +81,21 @@ public class PaqueteServicio implements IPaqueteServicio {
         if(paquete== null) throw new PaqueteNoEncontradoExcepcion("No existe el paquete");
         paquete.setBorrado(true);
         paqueteRepositorio.save(paquete);
+    }
+
+    @Override
+    public PaqueteConPrecioDTOResponse obtenerPaqueteConPrecio(Long id) {
+        Paquete paquete = this.obtenerPorId(id);
+
+        double precio = 0;
+
+        for (ServicioIndividual item: paquete.getServicios()) {
+            precio += item.getPrecio();
+        }
+
+        double precioConDescuento = precio - (precio *  15 / 100);
+
+        return new PaqueteConPrecioDTOResponse(paquete.getNombre(), paquete.getDescripcion(), paquete.getCodigo(),
+                paquete.getServicios(), precioConDescuento);
     }
 }

@@ -10,6 +10,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class FacturaDetalle {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

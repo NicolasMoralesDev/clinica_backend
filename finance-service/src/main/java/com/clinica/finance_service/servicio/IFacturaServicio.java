@@ -14,4 +14,5 @@ public interface IFacturaServicio {
     Factura actualizar(Long id, FacturaDTO dto);
     void eliminar(Long id);
 
+    void bloquearFactura(Long idFactura);
 }
