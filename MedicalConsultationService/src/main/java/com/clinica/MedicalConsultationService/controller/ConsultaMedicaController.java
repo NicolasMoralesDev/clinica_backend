@@ -91,15 +91,14 @@ public class ConsultaMedicaController {
 
     /**
      * Controlador para borrar consultasMedicas
-     * @param id Recibe el id de la consultaMedica a borrar
+     * @param ids Recibe los ids de las consultaMedicas a borrar
      * @return ResponseEntity Devuelve esta entidad con el codigo de estado y un mensaje
      */
-    @DeleteMapping(value = "/borrar")
-    public ResponseEntity<?> borrarConsultaMedica(@RequestParam Long id){
+    @PostMapping(value = "/borrar")
+    public ResponseEntity<?> borrarConsultaMedica(@RequestBody List<Long> ids){
         HashMap<String, String> response = new HashMap<>();
-
         try {
-            consultaMedicaSerice.eliminar(id);
+            consultaMedicaSerice.eliminar(ids);
             response.put("msg", "Consulta medica borrada correctamente!");
             return ResponseEntity.ok().body(response);
         } catch (Exception e){

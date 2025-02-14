@@ -64,10 +64,13 @@ public class ConsultaMedicaService implements IConsultaMedicaSerice {
 
     @Override
     @Transactional
-    public void eliminar(Long id) throws Exception {
+    public void eliminar(List<Long> ids) throws Exception {
         try {
-            ConsultaMedica consultaMedica = consultaMedicaRepository.findById(id).get();
-            consultaMedica.setBorrado(true);
+            ids.stream().forEach( id -> {
+                        ConsultaMedica consultaMedica = consultaMedicaRepository.findById(id).get();
+                        consultaMedica.setBorrado(true);
+               }
+            );
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }

@@ -11,5 +11,5 @@ public interface IConsultaMedicaSerice {
     ConsultaMedica obtenerPorId(Long id) throws Exception;
     ConsultaMedica crear(ConsultaMedicaDTO consultaMedicaDTO) throws Exception;
     ConsultaMedica actualizar(ConsultaMedicaDTO consultaMedicaDTO) throws Exception;
-    void eliminar(Long id) throws Exception;
+    void eliminar(List<Long> ids) throws Exception;
 }

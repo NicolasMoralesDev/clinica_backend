@@ -13,7 +13,7 @@ import java.time.LocalTime;
  */
 @Entity
 @Data
-@Table(name = "CONSULTA_MNEDICA")
+@Table(name = "CONSULTA_MEDICA")
 public class ConsultaMedica {
 
     @Id

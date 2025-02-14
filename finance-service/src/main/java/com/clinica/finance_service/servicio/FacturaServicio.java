@@ -1,8 +1,7 @@
 package com.clinica.finance_service.servicio;
 
-import com.clinica.finance_service.DTO.FacturaDTO;
-import com.clinica.finance_service.DTO.FacturaDetalleDTO;
-import com.clinica.finance_service.DTO.TurnoDTO;
+import com.clinica.finance_service.dto.FacturaDTO;
+import com.clinica.finance_service.dto.FacturaDetalleDTO;
 import com.clinica.finance_service.Excepciones.FacturaNoEncontradaExcepcion;
 import com.clinica.finance_service.Excepciones.MedioDePagoNoEncontradoExcepcion;
 import com.clinica.finance_service.Excepciones.TipoFacturaNoEncontradoExcepcion;

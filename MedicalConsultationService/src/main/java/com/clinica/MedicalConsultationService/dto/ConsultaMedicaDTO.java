@@ -11,6 +11,7 @@ import java.time.LocalTime;
 @Data
 public class ConsultaMedicaDTO {
 
+    private Long id;
     private LocalDate fechaTurno;
     private LocalTime horaTurno;
     private Long medico;

@@ -1,7 +1,7 @@
 package com.clinica.finance_service.servicio;
 
 
-import com.clinica.finance_service.DTO.FacturaDTO;
+import com.clinica.finance_service.dto.FacturaDTO;
 import com.clinica.finance_service.modelo.Factura;
 
 import java.util.List;
