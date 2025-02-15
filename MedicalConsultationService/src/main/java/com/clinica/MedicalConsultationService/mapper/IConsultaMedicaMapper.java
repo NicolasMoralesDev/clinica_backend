@@ -6,5 +6,6 @@ import com.clinica.MedicalConsultationService.entity.ConsultaMedica;
 public interface IConsultaMedicaMapper {
 
     ConsultaMedica consultaMedicaDtoAConsultaMedica(ConsultaMedicaDTO consultaMedicaDTO);
+    ConsultaMedicaDTO consultaMedicaAConsultaMedicaDto(ConsultaMedica consultaMedica);
 
 }

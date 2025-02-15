@@ -15,4 +15,11 @@ public class ConsultaMedicalMapper implements IConsultaMedicaMapper {
     public ConsultaMedica consultaMedicaDtoAConsultaMedica(ConsultaMedicaDTO consultaMedicaDTO) {
         return modelMapper.map(consultaMedicaDTO, ConsultaMedica.class);
     }
+
+    @Override
+    public ConsultaMedicaDTO consultaMedicaAConsultaMedicaDto(ConsultaMedica consultaMedica) {
+        ConsultaMedicaDTO consultaMedicaDTO = modelMapper.map(ConsultaMedica.class, ConsultaMedicaDTO.class);
+        consultaMedicaDTO.setId(consultaMedicaDTO.getId());
+        return consultaMedicaDTO;
+    }
 }

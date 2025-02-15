@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IConsultaMedicaSerice {
 
-    List<ConsultaMedica> obtenerTodos() throws Exception;
+    List<ConsultaMedicaDTO> obtenerTodos() throws Exception;
     ConsultaMedica obtenerPorId(Long id) throws Exception;
     ConsultaMedica crear(ConsultaMedicaDTO consultaMedicaDTO) throws Exception;
     ConsultaMedica actualizar(ConsultaMedicaDTO consultaMedicaDTO) throws Exception;

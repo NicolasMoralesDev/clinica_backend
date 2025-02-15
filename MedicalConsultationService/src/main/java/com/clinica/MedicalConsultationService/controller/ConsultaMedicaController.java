@@ -20,7 +20,7 @@ import java.util.List;
 public class ConsultaMedicaController {
 
     @Autowired
-    private IConsultaMedicaSerice consultaMedicaSerice;
+    private IConsultaMedicaSerice consultaMedicaService;
 
     /**
      * Controlador para obtener las consultasMedicas
@@ -29,8 +29,7 @@ public class ConsultaMedicaController {
     @GetMapping(value = "/obtenerTodas")
     public ResponseEntity<?> obtenerConsultasMedicas(){
         try {
-            List<ConsultaMedica> consultaMedicas = consultaMedicaSerice.obtenerTodos();
-            return  ResponseEntity.ok().body(consultaMedicas);
+            return  ResponseEntity.ok().body(consultaMedicaService.obtenerTodos());
         } catch (Exception e){
             return  ResponseEntity.badRequest().body("Error "+ e.getMessage());
         }
@@ -44,7 +43,7 @@ public class ConsultaMedicaController {
     @GetMapping(value = "/obtener")
     public ResponseEntity<?> obtenerConsultaMedicaId(@RequestParam Long id){
         try {
-            ConsultaMedica consultasMedicas = consultaMedicaSerice.obtenerPorId(id);
+            ConsultaMedica consultasMedicas = consultaMedicaService.obtenerPorId(id);
             return  ResponseEntity.ok().body(consultasMedicas);
         } catch (Exception e){
             return  ResponseEntity.badRequest().body("Error "+ e.getMessage());
@@ -61,7 +60,7 @@ public class ConsultaMedicaController {
         HashMap<String, String> response = new HashMap<>();
 
         try {
-            consultaMedicaSerice.crear(consultaMedicaDTO);
+            consultaMedicaService.crear(consultaMedicaDTO);
             response.put("msg", "Consulta Medica registrada correctamente!");
             return ResponseEntity.ok().body(response);
         } catch (Exception e){
@@ -80,7 +79,7 @@ public class ConsultaMedicaController {
         HashMap<String, String> response = new HashMap<>();
 
         try {
-            consultaMedicaSerice.actualizar(consultaMedicaDTO);
+            consultaMedicaService.actualizar(consultaMedicaDTO);
             response.put("msg", "Consulta Medica actualizada correctamente!");
             return ResponseEntity.ok().body(response);
         } catch (Exception e){
@@ -98,7 +97,7 @@ public class ConsultaMedicaController {
     public ResponseEntity<?> borrarConsultaMedica(@RequestBody List<Long> ids){
         HashMap<String, String> response = new HashMap<>();
         try {
-            consultaMedicaSerice.eliminar(ids);
+            consultaMedicaService.eliminar(ids);
             response.put("msg", "Consulta medica borrada correctamente!");
             return ResponseEntity.ok().body(response);
         } catch (Exception e){

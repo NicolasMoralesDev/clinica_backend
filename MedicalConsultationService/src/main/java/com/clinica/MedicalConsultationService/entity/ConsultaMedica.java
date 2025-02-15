@@ -31,6 +31,8 @@ public class ConsultaMedica {
     private Long servicioIndividual;
     @Column(name = "MONTO_TOTAL")
     private double montoTotal;
+    @Column(name = "PAGADO")
+    private boolean pagado;
     @Column(name = "BORRADO")
     private boolean borrado;
 
