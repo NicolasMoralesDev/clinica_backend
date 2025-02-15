@@ -1,6 +1,8 @@
 package com.clinica.MedicalConsultationService.service.impl;
 
 import com.clinica.MedicalConsultationService.dto.ConsultaMedicaDTO;
+import com.clinica.MedicalConsultationService.dto.MedicoDTO;
+import com.clinica.MedicalConsultationService.dto.PacienteDTO;
 import com.clinica.MedicalConsultationService.entity.ConsultaMedica;
 import com.clinica.MedicalConsultationService.mapper.IConsultaMedicaMapper;
 import com.clinica.MedicalConsultationService.repository.IConsultaMedicaRepository;
@@ -26,9 +28,31 @@ public class ConsultaMedicaService implements IConsultaMedicaSerice {
 
     @Transactional(readOnly = true)
     @Override
-    public List<ConsultaMedica> obtenerTodos() throws Exception {
+    public List<ConsultaMedicaDTO> obtenerTodos() throws Exception {
         try {
-            return consultaMedicaRepository.findAll();
+            List<ConsultaMedicaDTO> consultaMedicas =  consultaMedicaRepository.findAll()
+                    .stream().map(consultaMedica -> {
+                  return consultaMedicaMapper.consultaMedicaAConsultaMedicaDto(consultaMedica);
+            }).toList();
+
+            MedicoDTO medicoDTO = new MedicoDTO();
+            medicoDTO.setNombre("Nicolas Morales");
+            medicoDTO.setId(1L);
+
+            PacienteDTO pacienteDTO = new PacienteDTO();
+            pacienteDTO.setId(1L);
+            pacienteDTO.setNombre("Mauricio primatesta");
+            pacienteDTO.setEmail("nico@gmail.com");
+            pacienteDTO.setDireccion("siempre viva 1234");
+            pacienteDTO.setDni("44679734");
+            pacienteDTO.setObraSocial(true);
+
+            consultaMedicas.stream().forEach(consulta -> {
+                consulta.setId(1L);
+                consulta.setPaciente(pacienteDTO);
+                consulta.setMedico(medicoDTO);
+            });
+            return consultaMedicas;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
@@ -64,10 +88,13 @@ public class ConsultaMedicaService implements IConsultaMedicaSerice {
 
     @Override
     @Transactional
-    public void eliminar(Long id) throws Exception {
+    public void eliminar(List<Long> ids) throws Exception {
         try {
-            ConsultaMedica consultaMedica = consultaMedicaRepository.findById(id).get();
-            consultaMedica.setBorrado(true);
+            ids.stream().forEach( id -> {
+                        ConsultaMedica consultaMedica = consultaMedicaRepository.findById(id).get();
+                        consultaMedica.setBorrado(true);
+               }
+            );
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }

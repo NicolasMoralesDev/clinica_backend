@@ -1,11 +1,10 @@
 package com.clinica.finance_service.controlador;
 
 
-import com.clinica.finance_service.DTO.TipoFacturaDTO;
+import com.clinica.finance_service.dto.TipoFacturaDTO;
 import com.clinica.finance_service.Excepciones.TipoFacturaNoEncontradoExcepcion;
 import com.clinica.finance_service.modelo.TipoFactura;
 import com.clinica.finance_service.servicio.TipoFacturaServicio;
-import jakarta.ws.rs.Path;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
