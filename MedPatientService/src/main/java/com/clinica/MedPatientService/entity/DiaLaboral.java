@@ -21,6 +21,8 @@ public class DiaLaboral {
     private int turnosDisponibles;
     @Column(name = "HORARIO_INICIO")
     private int horarioInicio;
+//    @Column(name = "DIA_LABORAL")
+//    private int ;
     @Column(name = "BORRADO")
     private boolean borrado;
 }
