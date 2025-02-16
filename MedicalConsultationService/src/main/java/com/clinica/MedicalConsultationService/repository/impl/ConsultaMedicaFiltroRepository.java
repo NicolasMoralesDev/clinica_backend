@@ -36,7 +36,6 @@ public class ConsultaMedicaFiltroRepository implements IConsultaMedicaFiltroRepo
             }
                 predicates.add(cb.equal(root.get("borrado"), consultaMedicaFiltro.isAbierta()));
             cr.select(root).where(predicates.toArray(new Predicate[0]));
-
             return em.createQuery(cr).getResultList();
         } catch (Exception e) {
             e.printStackTrace();
