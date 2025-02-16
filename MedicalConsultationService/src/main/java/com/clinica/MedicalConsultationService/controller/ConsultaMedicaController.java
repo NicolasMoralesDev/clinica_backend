@@ -2,6 +2,7 @@ package com.clinica.MedicalConsultationService.controller;
 
 
 import com.clinica.MedicalConsultationService.dto.ConsultaMedicaDTO;
+import com.clinica.MedicalConsultationService.dto.ConsultaMedicaFiltroDTO;
 import com.clinica.MedicalConsultationService.entity.ConsultaMedica;
 import com.clinica.MedicalConsultationService.service.IConsultaMedicaSerice;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +27,10 @@ public class ConsultaMedicaController {
      * Controlador para obtener las consultasMedicas
      * @return ResponseEntity Devuelve esta entidad con el codigo de estado y un listado de consultasMedicas
      */
-    @GetMapping(value = "/obtenerTodas")
-    public ResponseEntity<?> obtenerConsultasMedicas(){
+    @PostMapping(value = "/obtenerTodas")
+    public ResponseEntity<?> obtenerConsultasMedicas(@RequestBody ConsultaMedicaFiltroDTO consultaMedicaFiltro){
         try {
-            return  ResponseEntity.ok().body(consultaMedicaService.obtenerTodos());
+            return  ResponseEntity.ok().body(consultaMedicaService.obtenerTodos(consultaMedicaFiltro));
         } catch (Exception e){
             return  ResponseEntity.badRequest().body("Error "+ e.getMessage());
         }

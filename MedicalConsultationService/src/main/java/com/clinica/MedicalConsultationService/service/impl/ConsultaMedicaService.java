@@ -1,10 +1,12 @@
 package com.clinica.MedicalConsultationService.service.impl;
 
 import com.clinica.MedicalConsultationService.dto.ConsultaMedicaDTO;
+import com.clinica.MedicalConsultationService.dto.ConsultaMedicaFiltroDTO;
 import com.clinica.MedicalConsultationService.dto.MedicoDTO;
 import com.clinica.MedicalConsultationService.dto.PacienteDTO;
 import com.clinica.MedicalConsultationService.entity.ConsultaMedica;
 import com.clinica.MedicalConsultationService.mapper.IConsultaMedicaMapper;
+import com.clinica.MedicalConsultationService.repository.IConsultaMedicaFiltroRepository;
 import com.clinica.MedicalConsultationService.repository.IConsultaMedicaRepository;
 import com.clinica.MedicalConsultationService.service.IConsultaMedicaSerice;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +28,14 @@ public class ConsultaMedicaService implements IConsultaMedicaSerice {
     @Autowired
     private IConsultaMedicaMapper consultaMedicaMapper;
 
+    @Autowired
+    private IConsultaMedicaFiltroRepository consultaMedicaFiltroRepository;
+
     @Transactional(readOnly = true)
     @Override
-    public List<ConsultaMedicaDTO> obtenerTodos() throws Exception {
+    public List<ConsultaMedicaDTO> obtenerTodos(ConsultaMedicaFiltroDTO consultaMedicaFiltro) throws Exception {
         try {
-            List<ConsultaMedicaDTO> consultaMedicas =  consultaMedicaRepository.findAll()
+            List<ConsultaMedicaDTO> consultaMedicas =  consultaMedicaFiltroRepository.findByFilter(consultaMedicaFiltro)
                     .stream().map(consultaMedica -> {
                   return consultaMedicaMapper.consultaMedicaAConsultaMedicaDto(consultaMedica);
             }).toList();

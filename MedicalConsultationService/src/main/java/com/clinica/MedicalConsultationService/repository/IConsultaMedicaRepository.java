@@ -9,9 +9,4 @@ import java.util.List;
 
 
 @Repository
-public interface IConsultaMedicaRepository extends JpaRepository<ConsultaMedica, Long> {
-
-    @Query("SELECT c FROM ConsultaMedica c WHERE c.borrado = false")
-    @Override
-    List<ConsultaMedica> findAll();
-}
+public interface IConsultaMedicaRepository extends JpaRepository<ConsultaMedica, Long> {}
