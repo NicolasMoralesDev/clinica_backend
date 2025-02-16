@@ -12,4 +12,5 @@ public class ConsultaMedicaFiltroDTO {
     private Long paciente;
     private Long medico;
     private boolean abierta;
+    private boolean pagado;
 }

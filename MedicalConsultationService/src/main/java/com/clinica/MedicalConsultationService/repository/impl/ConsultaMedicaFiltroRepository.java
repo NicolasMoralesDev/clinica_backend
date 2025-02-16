@@ -34,8 +34,11 @@ public class ConsultaMedicaFiltroRepository implements IConsultaMedicaFiltroRepo
             if (consultaMedicaFiltro.getPaciente() != null) {
                 predicates.add(cb.equal(root.get("paciente"), consultaMedicaFiltro.getPaciente()));
             }
-                predicates.add(cb.equal(root.get("borrado"), consultaMedicaFiltro.isAbierta()));
+            predicates.add(cb.equal(root.get("pagado"), consultaMedicaFiltro.isPagado()));
+            predicates.add(cb.equal(root.get("borrado"), consultaMedicaFiltro.isAbierta()));
+
             cr.select(root).where(predicates.toArray(new Predicate[0]));
+
             return em.createQuery(cr).getResultList();
         } catch (Exception e) {
             e.printStackTrace();
