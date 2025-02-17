@@ -16,7 +16,7 @@ services:
     networks:
       - clinica_network
     healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uadmin", "-padmin" ]
+      test: [ "CMD", "mysqladmin", "ping", "-h", "medpatientservicedb", "-uadmin", "-padmin" ]
       interval: 10s
       timeout: 5s
       retries: 5
