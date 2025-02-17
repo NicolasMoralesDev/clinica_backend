@@ -2,26 +2,6 @@ version: "3.8"
 
 services:
 
-  # DB medicalconsultation
-  medicalconsultationdb:
-    image: mysql:8.0.33
-    container_name: medicalconsultationdb
-    restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: medicalconsultation_database
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: admin
-    ports:
-      - "3309:3306"
-    networks:
-      - clinica_network
-    healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uadmin", "-padmin" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
   # medicalconsultationservice container
   medicalconsultationservice:
     build: MedicalConsultationService
@@ -30,15 +10,12 @@ services:
     ports:
       - "8084:8080"
     environment:
-      BD: jdbc:mysql://medicalconsultationdb:3306/medicalconsultation_database
-      USER_BD: admin
-      PASSWORD_BD: admin
+      BD: jdbc:mysql://root:mvScPSUEPAtUHzJPwtjyCflxWgUojVVK@hopper.proxy.rlwy.net:23590/railway
+      USER_BD: root
+      PASSWORD_BD: mvScPSUEPAtUHzJPwtjyCflxWgUojVVK
       EUREKA_SERVER: http://eureka-sv:8761/eureka/
     networks:
       - clinica_network
-    depends_on:
-      medicalconsultationdb:
-        condition: service_healthy
 
 networks:
   clinica_network:
