@@ -1,5 +1,5 @@
 #Especifico el jdk que voy a utilizar
-FROM openjdk:17-jdk-slim
+FROM openjdk:17
 
 #Creamos el directorio de trabajo dentro del contenedor
 WORKDIR /app

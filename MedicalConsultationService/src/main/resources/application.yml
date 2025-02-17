@@ -9,9 +9,9 @@ spring:
     name: MedicalConsultationService
   jpa:
     hibernate:
-      ddl: auto
+      ddl-auto: update
   datasource:
-    url: jdbc:mysql://${BD}
+    url: ${BD}
     username: ${USER_BD}
     password: ${PASSWORD_BD}
 
@@ -27,7 +27,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: ${EUREKA_SERVER}
 
 
 jwt:
