@@ -1,0 +1,44 @@
+version: "3.8"
+
+services:
+  # DB medicalservice
+  medicalservicedb:
+    image: mysql:8.0.33
+    container_name: medicalservicedb
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: medicalservice_database
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+    ports:
+      - "3308:3306"
+    networks:
+      - clinica_network
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uadmin", "-padmin" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # medicalservice container
+  medicalservice:
+    build: MedicalService
+    container_name: medicalservice
+    restart: unless-stopped
+    ports:
+      - "8082:8080"
+    environment:
+      BD: jdbc:mysql://medicalservicedb:3306/medicalservice_database
+      USER_BD: admin
+      PASSWORD_BD: admin
+      EUREKA_SERVER: http://eureka-sv:8761/eureka/
+    networks:
+      - clinica_network
+    depends_on:
+      medicalservicedb:
+        condition: service_healthy
+
+networks:
+  clinica_network:
+    external: true
