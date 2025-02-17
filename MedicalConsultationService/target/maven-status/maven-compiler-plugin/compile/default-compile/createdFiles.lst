@@ -1,0 +1,12 @@
+com\clinica\MedicalConsultationService\entity\ConsultaMedica.class
+com\clinica\MedicalConsultationService\controller\healthcheck\healthcheck.class
+com\clinica\MedicalConsultationService\mapper\impl\ConsultaMedicalMapper.class
+com\clinica\MedicalConsultationService\service\IConsultaMedicaSerice.class
+com\clinica\MedicalConsultationService\service\impl\ConsultaMedicaService.class
+com\clinica\MedicalConsultationService\config\JwtAuthenticationConverter.class
+com\clinica\MedicalConsultationService\controller\ConsultaMedicaController.class
+com\clinica\MedicalConsultationService\dto\ConsultaMedicaDTO.class
+com\clinica\MedicalConsultationService\repository\IConsultaMedicaRepository.class
+com\clinica\MedicalConsultationService\config\SecurityConfig.class
+com\clinica\MedicalConsultationService\MedicalConsultationServiceApplication.class
+com\clinica\MedicalConsultationService\mapper\IConsultaMedicaMapper.class

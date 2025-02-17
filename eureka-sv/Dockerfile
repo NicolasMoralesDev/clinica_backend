@@ -5,7 +5,7 @@ FROM openjdk:17
 WORKDIR /app
 
 #Copiamos el archivo JAR al contenedor
-COPY target/eureka-sv-0.0.1.jar app.jar
+COPY target/eureka-sv-1.0.0.jar app.jar
 
 #Exponemos el puerto en el que corre el servicio
 EXPOSE 8761
