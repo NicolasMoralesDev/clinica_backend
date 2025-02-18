@@ -13,6 +13,8 @@ services:
       EUREKA_SERVER: http://eureka-sv:8761/eureka/
     networks:
       - clinica_network
+    volumes:
+      - /root/keystore.p12:/app/keystore.p12
 
 networks:
   clinica_network:
