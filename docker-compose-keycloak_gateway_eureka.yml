@@ -39,6 +39,7 @@ services:
       KC_METRICS_ENABLED: "true"
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-sv:8761/eureka/
       EUREKA_INSTANCE_HOSTNAME: keycloak
+    command: ["./kc.sh", "start-dev"]
     depends_on:
       - eureka-sv
 
