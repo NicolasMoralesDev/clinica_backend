@@ -7,10 +7,16 @@ spring:
 
   cloud:
     gateway:
+      routes:
+        - id: keycloak
+          uri: http://vps-4722960-x.dattaweb.com:9090
+          predicates:
+            - Path=/keycloak/**
       discovery:
         locator:
           enabled: true
           lower-case-service-id: true
+
 
   security:
     oauth2:
