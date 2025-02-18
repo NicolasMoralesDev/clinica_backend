@@ -8,7 +8,7 @@ WORKDIR /app
 COPY target/api-gateway-0.0.1.jar app.jar
 
 #Exponemos el puerto en el que corre el servicio
-EXPOSE 8082
+EXPOSE 443
 
 #Comando para ejecutar la aplicacion
 ENTRYPOINT ["java", "-jar", "app.jar"]
