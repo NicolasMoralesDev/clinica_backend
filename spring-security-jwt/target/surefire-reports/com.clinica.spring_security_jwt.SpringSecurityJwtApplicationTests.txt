@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.clinica.spring_security_jwt.SpringSecurityJwtApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.769 s -- in com.clinica.spring_security_jwt.SpringSecurityJwtApplicationTests
