@@ -3,7 +3,6 @@ com\clinica\MedPatientService\controller\DiasLaboralesController.class
 com\clinica\MedPatientService\dto\base\PersonaDTO.class
 com\clinica\MedPatientService\dto\DiaLaboralDTO.class
 com\clinica\MedPatientService\mapper\IEspecialidadMapper.class
-com\clinica\MedPatientService\config\SecurityConfig.class
 com\clinica\MedPatientService\service\impl\MedicoService.class
 com\clinica\MedPatientService\mapper\IEnfermedadMapper.class
 com\clinica\MedPatientService\mapper\IPacienteMapper.class
@@ -34,7 +33,6 @@ com\clinica\MedPatientService\mapper\impl\DiaLaboralMapper.class
 com\clinica\MedPatientService\repository\IPacienteRepository.class
 com\clinica\MedPatientService\service\IEspecialidadService.class
 com\clinica\MedPatientService\service\IEnfermedadService.class
-com\clinica\MedPatientService\config\JwtAuthenticationConverter.class
 com\clinica\MedPatientService\mapper\IDiaLaboralMapper.class
 com\clinica\MedPatientService\dto\EnfermedadDTO.class
 com\clinica\MedPatientService\controller\EnfermedadController.class
