@@ -91,6 +91,26 @@ services:
       timeout: 5s
       retries: 5
 
+  # DB spring-security-jwt
+  springsecurityjwtdb:
+    image: mysql:8.0.33
+    container_name: springsecurityjwtdb
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: springsecurityjwtdb_database
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+    ports:
+      - "3304:3306"
+    networks:
+      - clinica_network
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uadmin", "-padmin" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   #Contenedor para api gateway
   api-gateway:
     build: api-gateway
@@ -177,6 +197,21 @@ services:
       financeservicedb:
         condition: service_healthy
 
+  spring-security-jwt:
+    build: spring-security-jwt
+    restart: unless-stopped
+    ports:
+      - "9090:8080"
+    environment:
+      BD: jdbc:mysql://springsecurityjwtdb:3304/springsecurityjwtdb_database
+      USER_BD: admin
+      PASSWORD_BD: admin
+      EUREKA_SERVER: http://eureka-sv:8761/eureka/
+    networks:
+      - clinica_network
+    depends_on:
+      springsecurityjwtdb:
+        condition: service_healthy
 
 
 networks:
