@@ -11,106 +11,6 @@ services:
     networks:
       - clinica_network
 
-#   DB medpatient
-  medpatientservicedb:
-    image: mysql:8.0.33
-    container_name: medpatientservicedb
-    restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: medpatientservice_database
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: admin
-    ports:
-      - "3307:3306"
-    networks:
-      - clinica_network
-    healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uadmin", "-padmin" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
-  # DB medicalservice
-  medicalservicedb:
-    image: mysql:8.0.33
-    container_name: medicalservicedb
-    restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: medicalservice_database
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: admin
-    ports:
-      - "3308:3306"
-    networks:
-      - clinica_network
-    healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uadmin", "-padmin" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
-  # DB medicalconsultation
-  medicalconsultationdb:
-    image: mysql:8.0.33
-    container_name: medicalconsultationdb
-    restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: medicalconsultation_database
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: admin
-    ports:
-      - "3309:3306"
-    networks:
-      - clinica_network
-    healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uadmin", "-padmin" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
-  # DB finance-service
-  financeservicedb:
-    image: mysql:8.0.33
-    container_name: financeservicedb
-    restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: financeservice_database
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: admin
-    ports:
-      - "3305:3306"
-    networks:
-      - clinica_network
-    healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uadmin", "-padmin" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
-  # DB spring-security-jwt
-  springsecurityjwtdb:
-    image: mysql:8.0.33
-    container_name: springsecurityjwtdb
-    restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: springsecurityjwtdb_database
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: admin
-    ports:
-      - "3304:3306"
-    networks:
-      - clinica_network
-    healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-uadmin", "-padmin" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
   #Contenedor para api gateway
   api-gateway:
     build: api-gateway
@@ -122,9 +22,22 @@ services:
       EUREKA_SERVER: http://eureka-sv:8761/eureka/
     networks:
       - clinica_network
-    depends_on:
-      - eureka-sv
 
+  #Contenedor para spring-security-jwt
+  spring-security-jwt:
+    build: spring-security-jwt
+    container_name: spring-security-jwt
+    ports:
+      - "9090:8080"
+    environment:
+      BD: jdbc:mysql://root:PNwZtGnksPmQnqcQvGnqkjKCxjZZsxjs@turntable.proxy.rlwy.net:14054/railway
+      USER_BD: root
+      PASSWORD_BD: PNwZtGnksPmQnqcQvGnqkjKCxjZZsxjs
+      EUREKA_SERVER: http://eureka-sv:8761/eureka/
+      USUARIOROOT: admin
+      USUARIOPASS: admin
+    networks:
+      - clinica_network
 
   # medpatientservice container
   medpatientservice:
@@ -134,15 +47,12 @@ services:
     ports:
       - "8083:8080"
     environment:
-      BD: jdbc:mysql://medpatientservicedb:3306/medpatientservice_database
-      USER_BD: admin
-      PASSWORD_BD: admin
+      BD: jdbc:mysql://root:XhAKxsLdMWWOAEHpuEeOtEQgrXsnOpjW@switchyard.proxy.rlwy.net:12890/railway
+      USER_BD: root
+      PASSWORD_BD: XhAKxsLdMWWOAEHpuEeOtEQgrXsnOpjW
       EUREKA_SERVER: http://eureka-sv:8761/eureka/
     networks:
       - clinica_network
-    depends_on:
-      medpatientservicedb:
-        condition: service_healthy
 
   # medicalservice container
   medicalservice:
@@ -152,15 +62,12 @@ services:
     ports:
       - "8082:8080"
     environment:
-      BD: jdbc:mysql://medicalservicedb:3306/medicalservice_database
-      USER_BD: admin
-      PASSWORD_BD: admin
+      BD: jdbc:mysql://root:ooqqWRHdjViIZkyWowZjXYEpkadQHvGF@trolley.proxy.rlwy.net:59842/railway
+      USER_BD: root
+      PASSWORD_BD: ooqqWRHdjViIZkyWowZjXYEpkadQHvGF
       EUREKA_SERVER: http://eureka-sv:8761/eureka/
     networks:
       - clinica_network
-    depends_on:
-      medicalservicedb:
-        condition: service_healthy
 
   # medicalconsultationservice container
   medicalconsultationservice:
@@ -170,15 +77,12 @@ services:
     ports:
       - "8084:8080"
     environment:
-      BD: jdbc:mysql://medicalconsultationdb:3306/medicalconsultation_database
-      USER_BD: admin
-      PASSWORD_BD: admin
+      BD: jdbc:mysql://root:mvScPSUEPAtUHzJPwtjyCflxWgUojVVK@hopper.proxy.rlwy.net:23590/railway
+      USER_BD: root
+      PASSWORD_BD: mvScPSUEPAtUHzJPwtjyCflxWgUojVVK
       EUREKA_SERVER: http://eureka-sv:8761/eureka/
     networks:
       - clinica_network
-    depends_on:
-      medicalconsultationdb:
-        condition: service_healthy
 
   # financeservice container
   financeservice:
@@ -187,33 +91,13 @@ services:
     ports:
       - "8081:8080"
     environment:
-      BD: jdbc:mysql://financeservicedb:3306/financeservice_database
-      USER_BD: admin
-      PASSWORD_BD: admin
+      BD: jdbc:mysql://root:yqgYeTquDdrYEchlWkpwzTNGUWvowPIX@centerbeam.proxy.rlwy.net:42159/railway
+      USER_BD: root
+      PASSWORD_BD: yqgYeTquDdrYEchlWkpwzTNGUWvowPIX
       EUREKA_SERVER: http://eureka-sv:8761/eureka/
     networks:
       - clinica_network
-    depends_on:
-      financeservicedb:
-        condition: service_healthy
-
-  spring-security-jwt:
-    build: spring-security-jwt
-    restart: unless-stopped
-    ports:
-      - "9090:8080"
-    environment:
-      BD: jdbc:mysql://springsecurityjwtdb:3304/springsecurityjwtdb_database
-      USER_BD: admin
-      PASSWORD_BD: admin
-      EUREKA_SERVER: http://eureka-sv:8761/eureka/
-    networks:
-      - clinica_network
-    depends_on:
-      springsecurityjwtdb:
-        condition: service_healthy
-
 
 networks:
   clinica_network:
-    driver: bridge
+    external: true

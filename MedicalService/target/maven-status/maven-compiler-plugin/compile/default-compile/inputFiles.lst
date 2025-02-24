@@ -1,4 +1,3 @@
-C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedicalService\src\main\java\com\clinica\MedicalService\config\JwtAuthenticationConverter.java
 C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedicalService\src\main\java\com\clinica\MedicalService\config\SecurityConfig.java
 C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedicalService\src\main\java\com\clinica\MedicalService\controlador\CategoriaControlador.java
 C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedicalService\src\main\java\com\clinica\MedicalService\controlador\PaqueteControlador.java
@@ -13,6 +12,8 @@ C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedicalService\s
 C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedicalService\src\main\java\com\clinica\MedicalService\excepciones\GlobalExceptionHandler.java
 C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedicalService\src\main\java\com\clinica\MedicalService\excepciones\PaqueteNoEncontradoExcepcion.java
 C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedicalService\src\main\java\com\clinica\MedicalService\excepciones\ServicioIndividualNoEncontradaExcepcion.java
+C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedicalService\src\main\java\com\clinica\MedicalService\jwt\JwtUtils.java
+C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedicalService\src\main\java\com\clinica\MedicalService\jwt\JwtValidator.java
 C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedicalService\src\main\java\com\clinica\MedicalService\mapper\CategoriaMapper.java
 C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedicalService\src\main\java\com\clinica\MedicalService\mapper\PaqueteMapper.java
 C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedicalService\src\main\java\com\clinica\MedicalService\mapper\ServicioIndividualMapper.java

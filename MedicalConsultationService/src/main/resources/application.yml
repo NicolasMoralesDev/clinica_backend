@@ -15,23 +15,14 @@ spring:
     username: ${USER_BD}
     password: ${PASSWORD_BD}
 
-  #Keycloak Config
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: http://localhost:9090/realms/spring-boot-real-dev
-          jwk-set-uri: http://localhost:9090/realms/spring-boot-real-dev/protocol/openid-connect/certs
-
 
 eureka:
   client:
     service-url:
       defaultZone: ${EUREKA_SERVER}
 
-
-jwt:
-  auth:
-    converter:
-      principle-attribute: preferred_username
-      resource-id: spring-client-api-rest-clinica
+security:
+  jwt:
+    key: 18779077150cd4e1767d1390cf318d5067226af509a26ae311975e9f05c7cfe6
+    user:
+      generator: AUTHJWT-BACKEND

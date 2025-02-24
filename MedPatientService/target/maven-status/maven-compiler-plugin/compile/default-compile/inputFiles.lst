@@ -1,3 +1,4 @@
+C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedPatientService\src\main\java\com\clinica\MedPatientService\config\SecurityConfig.java
 C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedPatientService\src\main\java\com\clinica\MedPatientService\controller\DiasLaboralesController.java
 C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedPatientService\src\main\java\com\clinica\MedPatientService\controller\EnfermedadController.java
 C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedPatientService\src\main\java\com\clinica\MedPatientService\controller\EspecialidadController.java
@@ -16,6 +17,8 @@ C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedPatientServic
 C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedPatientService\src\main\java\com\clinica\MedPatientService\entity\Medico.java
 C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedPatientService\src\main\java\com\clinica\MedPatientService\entity\Paciente.java
 C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedPatientService\src\main\java\com\clinica\MedPatientService\entity\Persona.java
+C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedPatientService\src\main\java\com\clinica\MedPatientService\jwt\JwtUtils.java
+C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedPatientService\src\main\java\com\clinica\MedPatientService\jwt\JwtValidator.java
 C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedPatientService\src\main\java\com\clinica\MedPatientService\mapper\IDiaLaboralMapper.java
 C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedPatientService\src\main\java\com\clinica\MedPatientService\mapper\IEnfermedadMapper.java
 C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedPatientService\src\main\java\com\clinica\MedPatientService\mapper\IEspecialidadMapper.java

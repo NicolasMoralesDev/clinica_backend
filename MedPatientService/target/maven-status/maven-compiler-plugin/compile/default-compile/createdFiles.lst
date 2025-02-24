@@ -3,6 +3,7 @@ com\clinica\MedPatientService\controller\DiasLaboralesController.class
 com\clinica\MedPatientService\dto\base\PersonaDTO.class
 com\clinica\MedPatientService\dto\DiaLaboralDTO.class
 com\clinica\MedPatientService\mapper\IEspecialidadMapper.class
+com\clinica\MedPatientService\config\SecurityConfig.class
 com\clinica\MedPatientService\service\impl\MedicoService.class
 com\clinica\MedPatientService\mapper\IEnfermedadMapper.class
 com\clinica\MedPatientService\mapper\IPacienteMapper.class
@@ -12,6 +13,7 @@ com\clinica\MedPatientService\mapper\impl\EnfermedadMapper.class
 com\clinica\MedPatientService\service\IDiasLaboralesService.class
 com\clinica\MedPatientService\service\IMedicoService.class
 com\clinica\MedPatientService\entity\Enfermedad.class
+com\clinica\MedPatientService\jwt\JwtUtils.class
 com\clinica\MedPatientService\mapper\IMedicoMapper.class
 com\clinica\MedPatientService\mapper\impl\EspecialidadMapper.class
 com\clinica\MedPatientService\mapper\impl\MedicoMapper.class
@@ -25,6 +27,7 @@ com\clinica\MedPatientService\entity\Medico.class
 com\clinica\MedPatientService\controller\PacienteController.class
 com\clinica\MedPatientService\service\impl\EspecialidadService.class
 com\clinica\MedPatientService\entity\Persona.class
+com\clinica\MedPatientService\jwt\JwtValidator.class
 com\clinica\MedPatientService\repository\IEspecialidadRepository.class
 com\clinica\MedPatientService\mapper\impl\PacienteMapper.class
 com\clinica\MedPatientService\dto\MedicoDTO.class

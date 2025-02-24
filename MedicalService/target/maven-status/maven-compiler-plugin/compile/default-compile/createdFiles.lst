@@ -20,12 +20,12 @@ com\clinica\MedicalService\servicio\PaqueteServicio.class
 com\clinica\MedicalService\Excepciones\PaqueteNoEncontradoExcepcion.class
 com\clinica\MedicalService\servicio\IServicioMedicoServicio.class
 com\clinica\MedicalService\modelo\ServicioIndividual$ServicioIndividualBuilderImpl.class
+com\clinica\MedicalService\jwt\JwtUtils.class
 com\clinica\MedicalService\servicio\ServicioIndividualServicio.class
 com\clinica\MedicalService\modelo\Categoria.class
 com\clinica\MedicalService\controlador\ServicioMedicoControlador.class
 com\clinica\MedicalService\DTO\RespuestaError.class
 com\clinica\MedicalService\servicio\CategoriaServicio.class
-com\clinica\MedicalService\config\JwtAuthenticationConverter.class
 com\clinica\MedicalService\controlador\PaqueteControlador.class
 com\clinica\MedicalService\repositorio\ServicioIndividualRepositorio.class
 com\clinica\MedicalService\mapper\ServicioIndividualMapper.class
@@ -35,6 +35,7 @@ com\clinica\MedicalService\DTO\PaqueteConPrecioDTOResponse.class
 com\clinica\MedicalService\modelo\Paquete$PaqueteBuilder.class
 com\clinica\MedicalService\modelo\ServicioIndividual$ServicioIndividualBuilder.class
 com\clinica\MedicalService\controlador\CategoriaControlador.class
+com\clinica\MedicalService\jwt\JwtValidator.class
 com\clinica\MedicalService\repositorio\ServicioMedicoRepositorio.class
 com\clinica\MedicalService\modelo\Paquete$PaqueteBuilderImpl.class
 com\clinica\MedicalService\mapper\CategoriaMapper.class
