@@ -1,21 +1,20 @@
 package com.clinica.MedicalService.controlador;
 
-import com.clinica.MedicalService.DTO.CategoriaDTO;
 import com.clinica.MedicalService.Excepciones.CategoriaNoEncontradaExcepcion;
+import com.clinica.MedicalService.dto.CategoriaDTO;
 import com.clinica.MedicalService.modelo.Categoria;
 import com.clinica.MedicalService.servicio.CategoriaServicio;
-import jakarta.ws.rs.Path;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/categoria")
+@CrossOrigin(origins = "*")
 public class CategoriaControlador {
 
     private final CategoriaServicio categoriaServicio;

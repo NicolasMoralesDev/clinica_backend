@@ -10,6 +10,7 @@ public class DiaLaboralDTO {
     private Long id;
     private MedicoDTO medico;
     private int turnosDisponibles;
-    private int horarioInicio;
+    private String fecha;
+    private String horarioInicio;
     private boolean borrado;
 }

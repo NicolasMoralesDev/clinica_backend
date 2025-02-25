@@ -3,7 +3,7 @@ package com.clinica.finance_service.Excepciones;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
-import com.clinica.finance_service.DTO.RespuestaError;
+import com.clinica.finance_service.dto.RespuestaError;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 /**

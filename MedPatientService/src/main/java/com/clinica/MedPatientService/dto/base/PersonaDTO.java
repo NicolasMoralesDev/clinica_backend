@@ -6,6 +6,7 @@ import java.time.LocalDate;
 
 @Data
 public class PersonaDTO {
+    private Long id;
     private String nombre;
     private String apellido;
     private Long dni;

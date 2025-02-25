@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Setter;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 /**
  * Clase Entidad de DiasLaborales
  */
@@ -15,12 +18,15 @@ public class DiaLaboral {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "medico_id", referencedColumnName = "id")
     private Medico medico;
-    @Column(name = "TURNOS_DISPONIBLES")
-    private int turnosDisponibles;
-    @Column(name = "HORARIO_INICIO")
-    private int horarioInicio;
+    @Column(name = "FECHA_TURNO")
+    private LocalDate fechaTurno;
+    @Column(name = "HORA_TURNO")
+    private LocalTime horaTurno;
+    @Column(name = "DISPONIBLE")
+    private boolean disponible;
     @Column(name = "BORRADO")
     private boolean borrado;
 }

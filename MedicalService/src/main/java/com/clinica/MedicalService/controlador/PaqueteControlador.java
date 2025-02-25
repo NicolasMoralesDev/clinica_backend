@@ -15,6 +15,7 @@ import java.util.List;
 @RequestMapping("/paquete")
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class PaqueteControlador {
 
     private final PaqueteServicio paqueteServicio;

@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("servicio-individual")
+@CrossOrigin(origins = "*")
 public class ServicioIndividualControlador {
 
     private final ServicioIndividualServicio servicioIndividualServicio;

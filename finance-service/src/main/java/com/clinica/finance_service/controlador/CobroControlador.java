@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/cobro")
+@CrossOrigin(origins = "*")
 public class CobroControlador {
 
     private final CobroServicio cobroServicio;

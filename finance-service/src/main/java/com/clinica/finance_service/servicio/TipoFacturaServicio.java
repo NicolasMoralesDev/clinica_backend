@@ -1,9 +1,8 @@
 package com.clinica.finance_service.servicio;
 
-import com.clinica.finance_service.DTO.TipoFacturaDTO;
+import com.clinica.finance_service.dto.TipoFacturaDTO;
 import com.clinica.finance_service.Excepciones.TipoFacturaNoEncontradoExcepcion;
 import com.clinica.finance_service.Mappers.TipoFacturaMapper;
-import com.clinica.finance_service.modelo.Factura;
 import com.clinica.finance_service.modelo.TipoFactura;
 import com.clinica.finance_service.repositorio.TipoFacturaRepositorio;
 import lombok.RequiredArgsConstructor;

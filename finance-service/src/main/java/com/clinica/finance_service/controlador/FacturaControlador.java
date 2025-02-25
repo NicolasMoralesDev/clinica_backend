@@ -1,10 +1,9 @@
 package com.clinica.finance_service.controlador;
 
-import com.clinica.finance_service.DTO.FacturaDTO;
+import com.clinica.finance_service.dto.FacturaDTO;
 import com.clinica.finance_service.Excepciones.FacturaNoEncontradaExcepcion;
 import com.clinica.finance_service.modelo.Factura;
 import com.clinica.finance_service.servicio.FacturaServicio;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +14,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/factura")
+@CrossOrigin(origins = "*")
 public class FacturaControlador {
 
     private final FacturaServicio facturaServicio;
