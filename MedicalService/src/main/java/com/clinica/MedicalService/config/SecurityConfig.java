@@ -33,6 +33,7 @@ public class SecurityConfig {
                 .sessionManagement( session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests( http -> http
                         .requestMatchers("/actuator/**").permitAll()
+                        .requestMatchers("/servicio-medico/**").permitAll()
                         .anyRequest().authenticated())
                 .addFilterBefore(new JwtValidator(jwtUtils), BasicAuthenticationFilter.class)
                 .build();

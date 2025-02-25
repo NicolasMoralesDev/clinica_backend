@@ -3,6 +3,7 @@ package com.clinica.MedicalService.controlador;
 import com.clinica.MedicalService.modelo.ServicioMedico;
 import com.clinica.MedicalService.servicio.ServicioMedicoServicio;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +30,15 @@ public class ServicioMedicoControlador {
         return ResponseEntity.ok(servicioMedico);
     }
 
+    @GetMapping("/{id}/monto")
+    public ResponseEntity<?> getMontoById(@PathVariable Long id){
+        try{
+            Double montoServ = servicioMedicoServicio.obtenerPorId(id).getPrecio();
+            return ResponseEntity.ok(montoServ);
+        }catch (Exception e ){
+            return ResponseEntity.internalServerError().body("Error al buscar el monto");
+        }
+    }
 
 
 
