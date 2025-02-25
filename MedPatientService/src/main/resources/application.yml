@@ -1,33 +1,26 @@
 version: "@project.version@"
 
 server:
-  port: 9007
+  port: 8083
 
 spring:
   application:
-    name: MedPatientService
+    name: medpatient-service
   jpa:
     hibernate:
-      ddl: auto
+      ddl-auto: update
   datasource:
-    url: jdbc:mysql://${BD}
+    url: ${BD}
     username: ${USER_BD}
     password: ${PASSWORD_BD}
-  #Keycloak Config
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: http://localhost:9090/realms/spring-boot-real-dev
-          jwk-set-uri: http://localhost:9090/realms/spring-boot-real-dev/protocol/openid-connect/certs
+
+security:
+  jwt:
+    key: 18779077150cd4e1767d1390cf318d5067226af509a26ae311975e9f05c7cfe6
+    user:
+      generator: AUTHJWT-BACKEND
 
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
-
-jwt:
-  auth:
-    converter:
-      principle-attribute: preferred_username
-      resource-id: spring-client-api-rest-clinica
+      defaultZone: ${EUREKA_SERVER}

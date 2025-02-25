@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+
+  # medicalservice container
+  medicalservice:
+    build: MedicalService
+    container_name: medicalservice
+    restart: unless-stopped
+    ports:
+      - "8082:8080"
+    environment:
+      BD: jdbc:mysql://root:ooqqWRHdjViIZkyWowZjXYEpkadQHvGF@trolley.proxy.rlwy.net:59842/railway
+      USER_BD: root
+      PASSWORD_BD: ooqqWRHdjViIZkyWowZjXYEpkadQHvGF
+      EUREKA_SERVER: http://eureka-sv:8761/eureka/
+    networks:
+      - clinica_network
+
+networks:
+  clinica_network:
+    external: true
