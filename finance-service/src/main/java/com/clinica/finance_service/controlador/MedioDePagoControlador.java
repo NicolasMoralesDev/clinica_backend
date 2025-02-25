@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/mediodepago")
+@CrossOrigin(origins = "*")
 public class MedioDePagoControlador {
 
     private final MedioDePagoServicio medioDePagoServicio;
