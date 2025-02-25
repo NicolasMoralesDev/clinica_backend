@@ -8,4 +8,5 @@ public interface IConsultaMedicaMapper {
     ConsultaMedica consultaMedicaDtoAConsultaMedica(ConsultaMedicaDTO consultaMedicaDTO);
     ConsultaMedicaDTO consultaMedicaAConsultaMedicaDto(ConsultaMedica consultaMedica);
 
+
 }

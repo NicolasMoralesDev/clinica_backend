@@ -6,15 +6,10 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(name = "medpatient-service")
-public interface IMedPatientRepository {
+@FeignClient(name = "medical-service")
+public interface IMedicalServiceRepository {
 
-    @GetMapping("/api/pacientes/obtener")
-    public PacienteDTO obtenerPacientePorId(@RequestParam Long id);
-
-    @GetMapping("/api/medicos/obtener")
-    public MedicoDTO obtenerMedicoPorId(@RequestParam Long id);
-
-
+    @GetMapping("/servicio-medico/{id}/monto")
+    public Double obtenerMonto(@RequestParam Long id);
 
 }

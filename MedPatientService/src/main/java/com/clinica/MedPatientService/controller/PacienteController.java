@@ -28,8 +28,9 @@ public class PacienteController {
     @GetMapping(value = "/obtenerTodos")
     public ResponseEntity<?> obtenerPacientes(){
         try {
-            List<Paciente> medicos = pacienteService.obtenerTodos();
-            return  ResponseEntity.ok().body(medicos);
+            System.out.println("Controller");
+            List<Paciente> pacientes = pacienteService.obtenerTodos();
+            return  ResponseEntity.ok(pacientes);
         } catch (Exception e){
             return  ResponseEntity.badRequest().body("Error "+ e.getMessage());
         }

@@ -1,6 +1,6 @@
 package com.clinica.MedicalService.servicio;
 
-import com.clinica.MedicalService.DTO.ServicioIndividualDTO;
+import com.clinica.MedicalService.dto.ServicioIndividualDTO;
 import com.clinica.MedicalService.modelo.ServicioIndividual;
 
 import java.util.List;

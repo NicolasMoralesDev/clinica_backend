@@ -1,6 +1,6 @@
 package com.clinica.MedicalService.controlador;
 
-import com.clinica.MedicalService.Excepciones.CategoriaNoEncontradaExcepcion;
+import com.clinica.MedicalService.excepciones.CategoriaNoEncontradaExcepcion;
 import com.clinica.MedicalService.dto.CategoriaDTO;
 import com.clinica.MedicalService.modelo.Categoria;
 import com.clinica.MedicalService.servicio.CategoriaServicio;

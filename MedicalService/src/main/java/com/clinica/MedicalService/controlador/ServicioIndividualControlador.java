@@ -1,7 +1,7 @@
 package com.clinica.MedicalService.controlador;
 
-import com.clinica.MedicalService.DTO.ServicioIndividualDTO;
-import com.clinica.MedicalService.Excepciones.ServicioIndividualNoEncontradaExcepcion;
+import com.clinica.MedicalService.dto.ServicioIndividualDTO;
+import com.clinica.MedicalService.excepciones.ServicioIndividualNoEncontradaExcepcion;
 import com.clinica.MedicalService.modelo.ServicioIndividual;
 import com.clinica.MedicalService.servicio.ServicioIndividualServicio;
 import lombok.RequiredArgsConstructor;

@@ -1,7 +1,7 @@
 package com.clinica.MedicalService.servicio;
 
-import com.clinica.MedicalService.DTO.PaqueteConPrecioDTOResponse;
-import com.clinica.MedicalService.DTO.PaqueteDTO;
+import com.clinica.MedicalService.dto.PaqueteConPrecioDTOResponse;
+import com.clinica.MedicalService.dto.PaqueteDTO;
 import com.clinica.MedicalService.modelo.Paquete;
 
 import java.util.List;

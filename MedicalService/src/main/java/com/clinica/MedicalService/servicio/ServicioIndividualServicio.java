@@ -1,8 +1,8 @@
 package com.clinica.MedicalService.servicio;
 
-import com.clinica.MedicalService.DTO.ServicioIndividualDTO;
-import com.clinica.MedicalService.Excepciones.CategoriaNoEncontradaExcepcion;
-import com.clinica.MedicalService.Excepciones.ServicioIndividualNoEncontradaExcepcion;
+import com.clinica.MedicalService.dto.ServicioIndividualDTO;
+import com.clinica.MedicalService.excepciones.CategoriaNoEncontradaExcepcion;
+import com.clinica.MedicalService.excepciones.ServicioIndividualNoEncontradaExcepcion;
 import com.clinica.MedicalService.mapper.ServicioIndividualMapper;
 import com.clinica.MedicalService.modelo.Categoria;
 import com.clinica.MedicalService.modelo.ServicioIndividual;

@@ -1,4 +1,4 @@
-package com.clinica.MedicalService.DTO;
+package com.clinica.MedicalService.dto;
 
 import com.clinica.MedicalService.modelo.ServicioIndividual;
 import lombok.AllArgsConstructor;

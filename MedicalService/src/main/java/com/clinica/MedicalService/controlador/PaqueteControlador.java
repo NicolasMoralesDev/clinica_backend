@@ -1,8 +1,8 @@
 package com.clinica.MedicalService.controlador;
 
-import com.clinica.MedicalService.DTO.PaqueteConPrecioDTOResponse;
-import com.clinica.MedicalService.DTO.PaqueteDTO;
-import com.clinica.MedicalService.Excepciones.PaqueteNoEncontradoExcepcion;
+import com.clinica.MedicalService.dto.PaqueteConPrecioDTOResponse;
+import com.clinica.MedicalService.dto.PaqueteDTO;
+import com.clinica.MedicalService.excepciones.PaqueteNoEncontradoExcepcion;
 import com.clinica.MedicalService.modelo.Paquete;
 import com.clinica.MedicalService.servicio.PaqueteServicio;
 import lombok.RequiredArgsConstructor;

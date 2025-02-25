@@ -27,6 +27,7 @@ public class MedicoService implements IMedicoService {
     @Transactional(readOnly = true)
     public List<Medico> obtenerTodos() throws Exception {
         try {
+            System.out.println("Service");
             return medicoRepository.findAll();
         } catch (Exception e) {
             throw new Exception(e.getMessage());

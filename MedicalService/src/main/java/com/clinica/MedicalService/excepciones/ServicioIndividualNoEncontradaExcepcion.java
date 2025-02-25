@@ -1,4 +1,4 @@
-package com.clinica.MedicalService.Excepciones;
+package com.clinica.MedicalService.excepciones;
 
 public class ServicioIndividualNoEncontradaExcepcion extends RuntimeException {
 

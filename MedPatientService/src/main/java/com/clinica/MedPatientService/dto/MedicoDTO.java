@@ -10,7 +10,8 @@ import java.util.Set;
  */
 @Data
 public class MedicoDTO extends PersonaDTO {
+
     private double sueldo;
-    private EspecialidadDTO especialidad;
-    private Set<DiaLaboralDTO> diasLaborales;
+    private Long especialidad;
+
 }

@@ -6,6 +6,7 @@ C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedPatientServic
 C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedPatientService\src\main\java\com\clinica\MedPatientService\controller\MedicoController.java
 C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedPatientService\src\main\java\com\clinica\MedPatientService\controller\PacienteController.java
 C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedPatientService\src\main\java\com\clinica\MedPatientService\dto\base\PersonaDTO.java
+C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedPatientService\src\main\java\com\clinica\MedPatientService\dto\BuscarTurnoDTO.java
 C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedPatientService\src\main\java\com\clinica\MedPatientService\dto\DiaLaboralDTO.java
 C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedPatientService\src\main\java\com\clinica\MedPatientService\dto\EnfermedadDTO.java
 C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedPatientService\src\main\java\com\clinica\MedPatientService\dto\EspecialidadDTO.java
@@ -30,10 +31,12 @@ C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedPatientServic
 C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedPatientService\src\main\java\com\clinica\MedPatientService\mapper\impl\PacienteMapper.java
 C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedPatientService\src\main\java\com\clinica\MedPatientService\mapper\IPacienteMapper.java
 C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedPatientService\src\main\java\com\clinica\MedPatientService\MedPatientServiceApplication.java
+C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedPatientService\src\main\java\com\clinica\MedPatientService\repository\IDiaLaboralFiltroRepository.java
 C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedPatientService\src\main\java\com\clinica\MedPatientService\repository\IDiaLaboralRepository.java
 C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedPatientService\src\main\java\com\clinica\MedPatientService\repository\IEnfermedadRepository.java
 C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedPatientService\src\main\java\com\clinica\MedPatientService\repository\IEspecialidadRepository.java
 C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedPatientService\src\main\java\com\clinica\MedPatientService\repository\IMedicoRepository.java
+C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedPatientService\src\main\java\com\clinica\MedPatientService\repository\impl\DiaLaboralRepository.java
 C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedPatientService\src\main\java\com\clinica\MedPatientService\repository\IPacienteRepository.java
 C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedPatientService\src\main\java\com\clinica\MedPatientService\service\IDiasLaboralesService.java
 C:\Users\54375\Desktop\ROAD TO SR DEV\hackacode\clinica_backend\MedPatientService\src\main\java\com\clinica\MedPatientService\service\IEnfermedadService.java

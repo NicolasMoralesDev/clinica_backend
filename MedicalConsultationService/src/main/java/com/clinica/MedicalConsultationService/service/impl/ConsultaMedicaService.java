@@ -5,11 +5,15 @@ import com.clinica.MedicalConsultationService.entity.ConsultaMedica;
 import com.clinica.MedicalConsultationService.mapper.IConsultaMedicaMapper;
 import com.clinica.MedicalConsultationService.repository.IConsultaMedicaFiltroRepository;
 import com.clinica.MedicalConsultationService.repository.IConsultaMedicaRepository;
+import com.clinica.MedicalConsultationService.repository.IMedPatientRepository;
+import com.clinica.MedicalConsultationService.repository.IMedicalServiceRepository;
 import com.clinica.MedicalConsultationService.service.IConsultaMedicaSerice;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -17,6 +21,7 @@ import java.util.List;
  * Clase Service para ConsultaMedica
  */
 @Service
+@RequiredArgsConstructor
 public class ConsultaMedicaService implements IConsultaMedicaSerice {
 
     @Autowired
@@ -28,33 +33,44 @@ public class ConsultaMedicaService implements IConsultaMedicaSerice {
     @Autowired
     private IConsultaMedicaFiltroRepository consultaMedicaFiltroRepository;
 
+    private final IMedPatientRepository iMedPatientRepository;
+
+    private final IMedicalServiceRepository iMedicalServiceRepository;
+
     @Transactional(readOnly = true)
     @Override
     public List<ConsultaMedicaDTO> obtenerTodos(ConsultaMedicaFiltroDTO consultaMedicaFiltro) throws Exception {
         try {
-            List<ConsultaMedicaDTO> consultaMedicas =  consultaMedicaFiltroRepository.findByFilter(consultaMedicaFiltro)
-                    .stream().map(consultaMedica -> {
-                  return consultaMedicaMapper.consultaMedicaAConsultaMedicaDto(consultaMedica);
-            }).toList();
 
-            MedicoDTO medicoDTO = new MedicoDTO();
-            medicoDTO.setNombre("Nicolas Morales");
-            medicoDTO.setId(1L);
+//            List<ConsultaMedicaDTO> consultaMedicas =  consultaMedicaFiltroRepository.findByFilter(consultaMedicaFiltro)
+//                    .stream().map(consultaMedica -> {
+//                  return consultaMedicaMapper.consultaMedicaAConsultaMedicaDto(consultaMedica);
+//            }).toList();
 
-            PacienteDTO pacienteDTO = new PacienteDTO();
-            pacienteDTO.setId(1L);
-            pacienteDTO.setNombre("Mauricio primatesta");
-            pacienteDTO.setEmail("nico@gmail.com");
-            pacienteDTO.setDireccion("siempre viva 1234");
-            pacienteDTO.setDni("44679734");
-            pacienteDTO.setObraSocial(true);
+            List<ConsultaMedica> consultaMedicas = consultaMedicaRepository.findAll();
 
-            consultaMedicas.stream().forEach(consulta -> {
-                consulta.setId(1L);
-                consulta.setPaciente(pacienteDTO);
-                consulta.setMedico(medicoDTO);
+            List<ConsultaMedicaDTO> consultaMedicaDTOList = new ArrayList<>();
+
+
+            consultaMedicas.forEach( item -> {
+                MedicoDTO medicoDTO = iMedPatientRepository.obtenerMedicoPorId(item.getMedico());
+                PacienteDTO pacienteDTO = iMedPatientRepository.obtenerPacientePorId(item.getPaciente());
+
+
+                ConsultaMedicaDTO dto = new ConsultaMedicaDTO();
+                dto.setId(item.getId());
+                dto.setPagado(item.isPagado());
+                dto.setBorrado(item.isBorrado());
+                dto.setMedico(medicoDTO);
+                dto.setPaciente(pacienteDTO);
+                dto.setMontoTotal(iMedicalServiceRepository.obtenerMonto(item.getServicioIndividual()));
+                dto.setServicioIndividual(item.getServicioIndividual());
+                dto.setFechaTurno(item.getFechaTurno());
+                dto.setHoraTurno(item.getHoraTurno());
+                consultaMedicaDTOList.add(dto);
             });
-            return consultaMedicas;
+
+            return consultaMedicaDTOList;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
@@ -71,9 +87,18 @@ public class ConsultaMedicaService implements IConsultaMedicaSerice {
     }
 
     @Override
-    public ConsultaMedica crear(ConsultaMedicaDTO consultaMedicaDTO) throws Exception {
+    public ConsultaMedica crear(ConsultaMedicaRequestDTO consultaMedicaDTO) throws Exception {
         try {
-            return consultaMedicaRepository.save(consultaMedicaMapper.consultaMedicaDtoAConsultaMedica(consultaMedicaDTO));
+            ConsultaMedica consultaMedicaNueva = new ConsultaMedica();
+            consultaMedicaNueva.setBorrado(false);
+            consultaMedicaNueva.setPagado(false);
+            consultaMedicaNueva.setMedico(consultaMedicaDTO.getMedico());
+            consultaMedicaNueva.setPaciente(consultaMedicaDTO.getPaciente());
+            consultaMedicaNueva.setHoraTurno(consultaMedicaDTO.getHoraTurno());
+            consultaMedicaNueva.setFechaTurno(consultaMedicaDTO.getFechaTurno());
+            consultaMedicaNueva.setMontoTotal(consultaMedicaDTO.getMontoTotal());
+            consultaMedicaNueva.setServicioIndividual(consultaMedicaDTO.getServicioIndividual());
+            return consultaMedicaRepository.save(consultaMedicaNueva);
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }

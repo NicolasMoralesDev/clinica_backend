@@ -10,7 +10,5 @@ import java.util.List;
 @Repository
 public interface IMedicoRepository extends JpaRepository<Medico, Long> {
 
-    @Query("SELECT m FROM Medico m WHERE m.activo = true")
-    @Override
-    List<Medico> findAll();
+
 }

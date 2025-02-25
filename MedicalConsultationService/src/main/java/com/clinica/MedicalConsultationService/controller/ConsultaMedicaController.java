@@ -3,6 +3,7 @@ package com.clinica.MedicalConsultationService.controller;
 
 import com.clinica.MedicalConsultationService.dto.ConsultaMedicaDTO;
 import com.clinica.MedicalConsultationService.dto.ConsultaMedicaFiltroDTO;
+import com.clinica.MedicalConsultationService.dto.ConsultaMedicaRequestDTO;
 import com.clinica.MedicalConsultationService.dto.ConsultasMedicasParametroDTO;
 import com.clinica.MedicalConsultationService.entity.ConsultaMedica;
 import com.clinica.MedicalConsultationService.service.IConsultaMedicaSerice;
@@ -58,7 +59,7 @@ public class ConsultaMedicaController {
      * @return ResponseEntity Devuelve esta entidad con el codigo de estado y un mensaje
      */
     @PostMapping(value = "/registro")
-    public ResponseEntity<?> registrarConsultasMedicas(@RequestBody ConsultaMedicaDTO consultaMedicaDTO){
+    public ResponseEntity<?> registrarConsultasMedicas(@RequestBody ConsultaMedicaRequestDTO consultaMedicaDTO){
         HashMap<String, String> response = new HashMap<>();
 
         try {

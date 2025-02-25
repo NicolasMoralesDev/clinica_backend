@@ -65,6 +65,7 @@ public class MedicoController {
             response.put("msg", "Medico registrado correctamente!");
             return ResponseEntity.ok().body(response);
         } catch (Exception e){
+            e.printStackTrace();
             response.put("error", e.getMessage());
             return  ResponseEntity.badRequest().body("Error "+ response);
         }

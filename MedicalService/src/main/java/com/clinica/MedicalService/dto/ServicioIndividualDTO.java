@@ -1,4 +1,4 @@
-package com.clinica.MedicalService.DTO;
+package com.clinica.MedicalService.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
