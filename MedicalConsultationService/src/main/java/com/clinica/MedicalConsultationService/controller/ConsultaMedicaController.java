@@ -2,6 +2,8 @@ package com.clinica.MedicalConsultationService.controller;
 
 
 import com.clinica.MedicalConsultationService.dto.ConsultaMedicaDTO;
+import com.clinica.MedicalConsultationService.dto.ConsultaMedicaFiltroDTO;
+import com.clinica.MedicalConsultationService.dto.ConsultasMedicasParametroDTO;
 import com.clinica.MedicalConsultationService.entity.ConsultaMedica;
 import com.clinica.MedicalConsultationService.service.IConsultaMedicaSerice;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +28,10 @@ public class ConsultaMedicaController {
      * Controlador para obtener las consultasMedicas
      * @return ResponseEntity Devuelve esta entidad con el codigo de estado y un listado de consultasMedicas
      */
-    @GetMapping(value = "/obtenerTodas")
-    public ResponseEntity<?> obtenerConsultasMedicas(){
+    @PostMapping(value = "/obtenerTodas")
+    public ResponseEntity<?> obtenerConsultasMedicas(@RequestBody ConsultaMedicaFiltroDTO consultaMedicaFiltro){
         try {
-            return  ResponseEntity.ok().body(consultaMedicaService.obtenerTodos());
+            return  ResponseEntity.ok().body(consultaMedicaService.obtenerTodos(consultaMedicaFiltro));
         } catch (Exception e){
             return  ResponseEntity.badRequest().body("Error "+ e.getMessage());
         }
@@ -100,6 +102,22 @@ public class ConsultaMedicaController {
             consultaMedicaService.eliminar(ids);
             response.put("msg", "Consulta medica borrada correctamente!");
             return ResponseEntity.ok().body(response);
+        } catch (Exception e){
+            response.put("error", e.getMessage());
+            return  ResponseEntity.badRequest().body("Error "+ response);
+        }
+    }
+
+    /**
+     * Controlador para filtrar externamente consultas y registrar nuevos turnos
+     * @param filtro Recibe los parametros del filtro
+     * @return ResponseEntity Devuelve esta entidad con el codigo de estado y un mensaje
+     */
+    @GetMapping(value = "/filtro-turno")
+    public ResponseEntity<?> consultaMedicaFiltradaTurnos(@RequestBody ConsultasMedicasParametroDTO filtro){
+        HashMap<String, String> response = new HashMap<>();
+        try {
+            return ResponseEntity.ok().body(consultaMedicaService.filtrarParaTurno(filtro));
         } catch (Exception e){
             response.put("error", e.getMessage());
             return  ResponseEntity.badRequest().body("Error "+ response);

@@ -1,5 +1,6 @@
 package com.clinica.MedPatientService.controller;
 
+import com.clinica.MedPatientService.dto.BuscarTurnoDTO;
 import com.clinica.MedPatientService.dto.DiaLaboralDTO;
 import com.clinica.MedPatientService.entity.DiaLaboral;
 import com.clinica.MedPatientService.service.IDiasLaboralesService;
@@ -31,6 +32,19 @@ public class DiasLaboralesController {
         try {
             List<DiaLaboral> diaLaborales = diasLaboralesService.obtenerTodos();
             return  ResponseEntity.ok().body(diaLaborales);
+        } catch (Exception e){
+            return  ResponseEntity.badRequest().body("Error "+ e.getMessage());
+        }
+    }
+
+    /**
+     * Controlador para obtener los díasLaborales para turnos
+     * @return ResponseEntity Devuelve esta entidad con el codigo de estado y un listado de diasLaborales
+     */
+    @PostMapping(value = "/obtenerTurno")
+    public ResponseEntity<?> obtenerDiasLaboralesTurno(@RequestBody BuscarTurnoDTO filtro){
+        try {
+            return  ResponseEntity.ok().body(diasLaboralesService.obtenerDiasLaboralesTurno(filtro));
         } catch (Exception e){
             return  ResponseEntity.badRequest().body("Error "+ e.getMessage());
         }

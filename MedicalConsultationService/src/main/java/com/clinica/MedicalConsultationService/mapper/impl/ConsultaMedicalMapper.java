@@ -20,6 +20,9 @@ public class ConsultaMedicalMapper implements IConsultaMedicaMapper {
     public ConsultaMedicaDTO consultaMedicaAConsultaMedicaDto(ConsultaMedica consultaMedica) {
         ConsultaMedicaDTO consultaMedicaDTO = modelMapper.map(ConsultaMedica.class, ConsultaMedicaDTO.class);
         consultaMedicaDTO.setId(consultaMedicaDTO.getId());
+        consultaMedicaDTO.setFechaTurno(consultaMedica.getFechaTurno());
+        consultaMedicaDTO.setHoraTurno(consultaMedica.getHoraTurno());
+        consultaMedicaDTO.setPagado(consultaMedica.isPagado());
         return consultaMedicaDTO;
     }
 }
