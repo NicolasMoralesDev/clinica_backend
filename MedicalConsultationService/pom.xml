@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.clinica</groupId>
 	<artifactId>MedicalConsultationService</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>MedicalConsultationService</name>
 	<description>MicroServicio de consultas medicas</description>
 	<url/>
@@ -43,6 +43,20 @@
 			<groupId>org.modelmapper</groupId>
 			<artifactId>modelmapper</artifactId>
 			<version>3.2.0</version>
+		</dependency>
+		<!-- Dependencia de Spring Security para manejar la autenticación y seguridad en la aplicación -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.auth0</groupId>
+			<artifactId>java-jwt</artifactId>
+			<version>4.4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>

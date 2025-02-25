@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.clinica</groupId>
 	<artifactId>finance-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>finance-service</name>
 	<description>Servicio para registrar los cobros a los pacientes por los servicios solicitados</description>
 	<url/>
@@ -35,7 +35,16 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
-
+		<!-- Dependencia de Spring Security para manejar la autenticación y seguridad en la aplicación -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.auth0</groupId>
+			<artifactId>java-jwt</artifactId>
+			<version>4.4.0</version>
+		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>

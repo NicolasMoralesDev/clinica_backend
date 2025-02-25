@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: spring-security-jwt
+
+  datasource:
+    url: ${BD}
+    username: ${USER_BD}
+    password: ${PASSWORD_BD}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQLDialect
+
+server:
+  port: 9090
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SERVER}
+
+security:
+  jwt:
+    key: 18779077150cd4e1767d1390cf318d5067226af509a26ae311975e9f05c7cfe6
+    user:
+      generator: AUTHJWT-BACKEND
+
+usuario:
+  root: ${USUARIOROOT}
+  pass: ${USUARIOPASS}

@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.clinica</groupId>
 	<artifactId>MedPatientService</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>MedPatientService</name>
 	<description>Micro servicio para gestionar informacion de medicos y pacientes</description>
 	<url/>
@@ -51,6 +51,15 @@
 			<version>3.2.0</version>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.github.openfeign</groupId>
+			<artifactId>feign-jackson</artifactId>
+			<version>11.6</version> <!-- Versión correcta de feign-jackson -->
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
@@ -61,6 +70,16 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+		</dependency>
+		<!-- Dependencia de Spring Security para manejar la autenticación y seguridad en la aplicación -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.auth0</groupId>
+			<artifactId>java-jwt</artifactId>
+			<version>4.4.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>

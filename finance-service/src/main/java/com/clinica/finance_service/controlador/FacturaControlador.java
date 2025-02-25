@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/factura")
+@CrossOrigin(origins = "*")
 public class FacturaControlador {
 
     private final FacturaServicio facturaServicio;

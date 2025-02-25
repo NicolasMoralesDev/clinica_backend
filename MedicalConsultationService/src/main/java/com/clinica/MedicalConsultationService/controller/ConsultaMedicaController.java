@@ -2,6 +2,8 @@ package com.clinica.MedicalConsultationService.controller;
 
 
 import com.clinica.MedicalConsultationService.dto.ConsultaMedicaDTO;
+import com.clinica.MedicalConsultationService.dto.ConsultaMedicaFiltroDTO;
+import com.clinica.MedicalConsultationService.dto.ConsultasMedicasParametroDTO;
 import com.clinica.MedicalConsultationService.entity.ConsultaMedica;
 import com.clinica.MedicalConsultationService.service.IConsultaMedicaSerice;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,17 +22,16 @@ import java.util.List;
 public class ConsultaMedicaController {
 
     @Autowired
-    private IConsultaMedicaSerice consultaMedicaSerice;
+    private IConsultaMedicaSerice consultaMedicaService;
 
     /**
      * Controlador para obtener las consultasMedicas
      * @return ResponseEntity Devuelve esta entidad con el codigo de estado y un listado de consultasMedicas
      */
-    @GetMapping(value = "/obtenerTodas")
-    public ResponseEntity<?> obtenerConsultasMedicas(){
+    @PostMapping(value = "/obtenerTodas")
+    public ResponseEntity<?> obtenerConsultasMedicas(@RequestBody ConsultaMedicaFiltroDTO consultaMedicaFiltro){
         try {
-            List<ConsultaMedica> consultaMedicas = consultaMedicaSerice.obtenerTodos();
-            return  ResponseEntity.ok().body(consultaMedicas);
+            return  ResponseEntity.ok().body(consultaMedicaService.obtenerTodos(consultaMedicaFiltro));
         } catch (Exception e){
             return  ResponseEntity.badRequest().body("Error "+ e.getMessage());
         }
@@ -44,7 +45,7 @@ public class ConsultaMedicaController {
     @GetMapping(value = "/obtener")
     public ResponseEntity<?> obtenerConsultaMedicaId(@RequestParam Long id){
         try {
-            ConsultaMedica consultasMedicas = consultaMedicaSerice.obtenerPorId(id);
+            ConsultaMedica consultasMedicas = consultaMedicaService.obtenerPorId(id);
             return  ResponseEntity.ok().body(consultasMedicas);
         } catch (Exception e){
             return  ResponseEntity.badRequest().body("Error "+ e.getMessage());
@@ -61,7 +62,7 @@ public class ConsultaMedicaController {
         HashMap<String, String> response = new HashMap<>();
 
         try {
-            consultaMedicaSerice.crear(consultaMedicaDTO);
+            consultaMedicaService.crear(consultaMedicaDTO);
             response.put("msg", "Consulta Medica registrada correctamente!");
             return ResponseEntity.ok().body(response);
         } catch (Exception e){
@@ -80,7 +81,7 @@ public class ConsultaMedicaController {
         HashMap<String, String> response = new HashMap<>();
 
         try {
-            consultaMedicaSerice.actualizar(consultaMedicaDTO);
+            consultaMedicaService.actualizar(consultaMedicaDTO);
             response.put("msg", "Consulta Medica actualizada correctamente!");
             return ResponseEntity.ok().body(response);
         } catch (Exception e){
@@ -91,17 +92,32 @@ public class ConsultaMedicaController {
 
     /**
      * Controlador para borrar consultasMedicas
-     * @param id Recibe el id de la consultaMedica a borrar
+     * @param ids Recibe los ids de las consultaMedicas a borrar
      * @return ResponseEntity Devuelve esta entidad con el codigo de estado y un mensaje
      */
-    @DeleteMapping(value = "/borrar")
-    public ResponseEntity<?> borrarConsultaMedica(@RequestParam Long id){
+    @PostMapping(value = "/borrar")
+    public ResponseEntity<?> borrarConsultaMedica(@RequestBody List<Long> ids){
         HashMap<String, String> response = new HashMap<>();
-
         try {
-            consultaMedicaSerice.eliminar(id);
+            consultaMedicaService.eliminar(ids);
             response.put("msg", "Consulta medica borrada correctamente!");
             return ResponseEntity.ok().body(response);
+        } catch (Exception e){
+            response.put("error", e.getMessage());
+            return  ResponseEntity.badRequest().body("Error "+ response);
+        }
+    }
+
+    /**
+     * Controlador para filtrar externamente consultas y registrar nuevos turnos
+     * @param filtro Recibe los parametros del filtro
+     * @return ResponseEntity Devuelve esta entidad con el codigo de estado y un mensaje
+     */
+    @GetMapping(value = "/filtro-turno")
+    public ResponseEntity<?> consultaMedicaFiltradaTurnos(@RequestBody ConsultasMedicasParametroDTO filtro){
+        HashMap<String, String> response = new HashMap<>();
+        try {
+            return ResponseEntity.ok().body(consultaMedicaService.filtrarParaTurno(filtro));
         } catch (Exception e){
             response.put("error", e.getMessage());
             return  ResponseEntity.badRequest().body("Error "+ response);

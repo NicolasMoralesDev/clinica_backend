@@ -4,16 +4,14 @@ import com.clinica.MedicalService.modelo.ServicioMedico;
 import com.clinica.MedicalService.servicio.ServicioMedicoServicio;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/servicio-medico")
+@CrossOrigin(origins = "*")
 public class ServicioMedicoControlador {
 
     private final ServicioMedicoServicio servicioMedicoServicio;

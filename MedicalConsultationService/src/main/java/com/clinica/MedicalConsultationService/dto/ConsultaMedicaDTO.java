@@ -11,10 +11,11 @@ import java.time.LocalTime;
 @Data
 public class ConsultaMedicaDTO {
 
+    private Long id;
     private LocalDate fechaTurno;
     private LocalTime horaTurno;
-    private Long medico;
-    private Long paciente;
+    private MedicoDTO medico;
+    private PacienteDTO paciente;
     private Long servicioIndividual;
     private double montoTotal;
     private boolean pagado;

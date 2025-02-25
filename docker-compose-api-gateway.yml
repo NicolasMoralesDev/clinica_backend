@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+
+  #Contenedor para api gateway
+  api-gateway:
+    build: api-gateway
+    container_name: api-gateway
+    restart: unless-stopped
+    ports:
+      - "443:443"
+    environment:
+      EUREKA_SERVER: http://eureka-sv:8761/eureka/
+    networks:
+      - clinica_network
+
+networks:
+  clinica_network:
+    external: true
