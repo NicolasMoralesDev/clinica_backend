@@ -1,9 +1,6 @@
 package com.clinica.MedicalConsultationService.service.impl;
 
-import com.clinica.MedicalConsultationService.dto.ConsultaMedicaDTO;
-import com.clinica.MedicalConsultationService.dto.ConsultaMedicaFiltroDTO;
-import com.clinica.MedicalConsultationService.dto.MedicoDTO;
-import com.clinica.MedicalConsultationService.dto.PacienteDTO;
+import com.clinica.MedicalConsultationService.dto.*;
 import com.clinica.MedicalConsultationService.entity.ConsultaMedica;
 import com.clinica.MedicalConsultationService.mapper.IConsultaMedicaMapper;
 import com.clinica.MedicalConsultationService.repository.IConsultaMedicaFiltroRepository;
@@ -101,6 +98,18 @@ public class ConsultaMedicaService implements IConsultaMedicaSerice {
                }
             );
         } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    @Override
+    public ConsultaMedicaResponseDTO filtrarParaTurno(ConsultasMedicasParametroDTO parametro) throws Exception {
+        try {
+            ConsultaMedica consulta = consultaMedicaFiltroRepository.findByParameter(parametro);
+            ConsultaMedicaResponseDTO response = new ConsultaMedicaResponseDTO();
+            response.setHoraTurno(consulta.getHoraTurno());
+            return response;
+        } catch (Exception e ) {
             throw new Exception(e.getMessage());
         }
     }

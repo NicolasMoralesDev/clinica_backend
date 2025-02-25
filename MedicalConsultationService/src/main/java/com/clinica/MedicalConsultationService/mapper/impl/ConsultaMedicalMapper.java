@@ -22,6 +22,7 @@ public class ConsultaMedicalMapper implements IConsultaMedicaMapper {
         consultaMedicaDTO.setId(consultaMedicaDTO.getId());
         consultaMedicaDTO.setFechaTurno(consultaMedica.getFechaTurno());
         consultaMedicaDTO.setHoraTurno(consultaMedica.getHoraTurno());
+        consultaMedicaDTO.setPagado(consultaMedica.isPagado());
         return consultaMedicaDTO;
     }
 }

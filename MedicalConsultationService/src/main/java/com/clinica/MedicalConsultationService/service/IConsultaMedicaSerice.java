@@ -2,6 +2,8 @@ package com.clinica.MedicalConsultationService.service;
 
 import com.clinica.MedicalConsultationService.dto.ConsultaMedicaDTO;
 import com.clinica.MedicalConsultationService.dto.ConsultaMedicaFiltroDTO;
+import com.clinica.MedicalConsultationService.dto.ConsultaMedicaResponseDTO;
+import com.clinica.MedicalConsultationService.dto.ConsultasMedicasParametroDTO;
 import com.clinica.MedicalConsultationService.entity.ConsultaMedica;
 
 import java.util.List;
@@ -13,4 +15,5 @@ public interface IConsultaMedicaSerice {
     ConsultaMedica crear(ConsultaMedicaDTO consultaMedicaDTO) throws Exception;
     ConsultaMedica actualizar(ConsultaMedicaDTO consultaMedicaDTO) throws Exception;
     void eliminar(List<Long> ids) throws Exception;
+    ConsultaMedicaResponseDTO filtrarParaTurno(ConsultasMedicasParametroDTO parametro) throws Exception;
 }

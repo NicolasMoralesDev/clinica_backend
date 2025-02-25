@@ -1,6 +1,6 @@
 package com.clinica.MedicalService.mapper;
 
-import com.clinica.MedicalService.DTO.CategoriaDTO;
+import com.clinica.MedicalService.dto.CategoriaDTO;
 import com.clinica.MedicalService.modelo.Categoria;
 import org.springframework.stereotype.Component;
 
