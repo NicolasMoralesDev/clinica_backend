@@ -1,7 +1,7 @@
 package com.clinica.finance_service.controlador;
 
-import com.clinica.finance_service.DTO.CobroDTO;
-import com.clinica.finance_service.Excepciones.CobroNoEncontradoExcepcion;
+import com.clinica.finance_service.dto.CobroDTO;
+import com.clinica.finance_service.excepciones.CobroNoEncontradoExcepcion;
 import com.clinica.finance_service.modelo.Cobro;
 import com.clinica.finance_service.servicio.CobroServicio;
 import lombok.RequiredArgsConstructor;

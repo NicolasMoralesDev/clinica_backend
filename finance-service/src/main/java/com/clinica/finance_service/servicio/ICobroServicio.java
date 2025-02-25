@@ -1,7 +1,7 @@
 package com.clinica.finance_service.servicio;
 
 
-import com.clinica.finance_service.DTO.CobroDTO;
+import com.clinica.finance_service.dto.CobroDTO;
 import com.clinica.finance_service.modelo.Cobro;
 
 import java.util.List;

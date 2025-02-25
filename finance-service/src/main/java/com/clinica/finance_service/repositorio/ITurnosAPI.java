@@ -1,7 +1,7 @@
 package com.clinica.finance_service.repositorio;
 
 
-import com.clinica.finance_service.DTO.ConsultaMedicaDTO;
+import com.clinica.finance_service.dto.ConsultaMedicaDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

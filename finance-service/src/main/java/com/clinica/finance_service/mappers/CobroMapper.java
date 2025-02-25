@@ -1,6 +1,6 @@
-package com.clinica.finance_service.Mappers;
+package com.clinica.finance_service.mappers;
 
-import com.clinica.finance_service.DTO.CobroDTO;
+import com.clinica.finance_service.dto.CobroDTO;
 import com.clinica.finance_service.modelo.Cobro;
 import com.clinica.finance_service.modelo.Factura;
 import com.clinica.finance_service.modelo.MedioDePago;

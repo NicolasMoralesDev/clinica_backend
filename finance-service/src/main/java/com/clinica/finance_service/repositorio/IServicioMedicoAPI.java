@@ -1,6 +1,6 @@
 package com.clinica.finance_service.repositorio;
 
-import com.clinica.finance_service.DTO.ServicioMedico;
+import com.clinica.finance_service.dto.ServicioMedico;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

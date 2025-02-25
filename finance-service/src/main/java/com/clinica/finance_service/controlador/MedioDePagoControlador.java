@@ -1,7 +1,7 @@
 package com.clinica.finance_service.controlador;
 
-import com.clinica.finance_service.DTO.MedioDePagoDTO;
-import com.clinica.finance_service.Excepciones.MedioDePagoNoEncontradoExcepcion;
+import com.clinica.finance_service.dto.MedioDePagoDTO;
+import com.clinica.finance_service.excepciones.MedioDePagoNoEncontradoExcepcion;
 import com.clinica.finance_service.modelo.MedioDePago;
 import com.clinica.finance_service.servicio.MedioDePagoServicio;
 import lombok.RequiredArgsConstructor;

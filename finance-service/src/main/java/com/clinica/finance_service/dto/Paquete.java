@@ -1,4 +1,4 @@
-package com.clinica.finance_service.DTO;
+package com.clinica.finance_service.dto;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import lombok.Getter;

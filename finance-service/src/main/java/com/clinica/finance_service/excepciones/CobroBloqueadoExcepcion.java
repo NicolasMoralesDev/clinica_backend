@@ -1,4 +1,4 @@
-package com.clinica.finance_service.Excepciones;
+package com.clinica.finance_service.excepciones;
 
 import org.springframework.stereotype.Component;
 

@@ -1,6 +1,6 @@
-package com.clinica.finance_service.Mappers;
+package com.clinica.finance_service.mappers;
 
-import com.clinica.finance_service.DTO.TipoFacturaDTO;
+import com.clinica.finance_service.dto.TipoFacturaDTO;
 import com.clinica.finance_service.modelo.TipoFactura;
 import org.springframework.stereotype.Component;
 

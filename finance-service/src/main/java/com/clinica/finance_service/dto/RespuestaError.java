@@ -1,4 +1,4 @@
-package com.clinica.finance_service.DTO;
+package com.clinica.finance_service.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

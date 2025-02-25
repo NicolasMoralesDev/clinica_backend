@@ -1,6 +1,6 @@
-package com.clinica.finance_service.Mappers;
+package com.clinica.finance_service.mappers;
 
-import com.clinica.finance_service.DTO.MedioDePagoDTO;
+import com.clinica.finance_service.dto.MedioDePagoDTO;
 import com.clinica.finance_service.modelo.MedioDePago;
 import org.springframework.stereotype.Component;
 

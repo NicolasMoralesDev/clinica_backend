@@ -1,10 +1,10 @@
 package com.clinica.finance_service.servicio;
 
-import com.clinica.finance_service.DTO.*;
-import com.clinica.finance_service.Excepciones.FacturaBorradaExcepcion;
-import com.clinica.finance_service.Excepciones.FacturaPagadaExcepcion;
-import com.clinica.finance_service.Excepciones.FacturaNoEncontradaExcepcion;
-import com.clinica.finance_service.Excepciones.TipoFacturaNoEncontradoExcepcion;
+import com.clinica.finance_service.dto.*;
+import com.clinica.finance_service.excepciones.FacturaBorradaExcepcion;
+import com.clinica.finance_service.excepciones.FacturaPagadaExcepcion;
+import com.clinica.finance_service.excepciones.FacturaNoEncontradaExcepcion;
+import com.clinica.finance_service.excepciones.TipoFacturaNoEncontradoExcepcion;
 import com.clinica.finance_service.modelo.Factura;
 import com.clinica.finance_service.modelo.FacturaDetalle;
 import com.clinica.finance_service.modelo.TipoFactura;

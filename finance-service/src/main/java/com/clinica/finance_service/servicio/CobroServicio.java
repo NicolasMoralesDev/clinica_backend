@@ -1,8 +1,8 @@
 package com.clinica.finance_service.servicio;
 
-import com.clinica.finance_service.DTO.CobroDTO;
-import com.clinica.finance_service.Excepciones.*;
-import com.clinica.finance_service.Mappers.CobroMapper;
+import com.clinica.finance_service.dto.CobroDTO;
+import com.clinica.finance_service.excepciones.*;
+import com.clinica.finance_service.mappers.CobroMapper;
 import com.clinica.finance_service.modelo.Cobro;
 import com.clinica.finance_service.modelo.Factura;
 import com.clinica.finance_service.modelo.MedioDePago;
