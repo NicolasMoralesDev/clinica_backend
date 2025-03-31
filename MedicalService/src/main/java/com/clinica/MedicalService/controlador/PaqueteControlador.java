@@ -1,0 +1,56 @@
+package com.clinica.MedicalService.controlador;
+
+import com.clinica.MedicalService.dto.PaqueteConPrecioDTOResponse;
+import com.clinica.MedicalService.dto.PaqueteDTO;
+import com.clinica.MedicalService.excepciones.PaqueteNoEncontradoExcepcion;
+import com.clinica.MedicalService.modelo.Paquete;
+import com.clinica.MedicalService.servicio.PaqueteServicio;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.net.URI;
+import java.util.List;
+
+@RequestMapping("/paquete")
+@RestController
+@RequiredArgsConstructor
+@CrossOrigin(origins = "*")
+public class PaqueteControlador {
+
+    private final PaqueteServicio paqueteServicio;
+
+    @GetMapping
+    public ResponseEntity<List<Paquete>> obtenerTodos(){
+        List<Paquete> paqueteList = paqueteServicio.listarTodos();
+        return ResponseEntity.ok(paqueteList);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PaqueteConPrecioDTOResponse> obtenerPorId(@PathVariable Long id){
+        PaqueteConPrecioDTOResponse paquete = paqueteServicio.obtenerPaqueteConPrecio(id);
+        if(paquete == null) throw new PaqueteNoEncontradoExcepcion("El paquete no existe");
+        return ResponseEntity.ok(paquete);
+    }
+
+    @PostMapping
+    public ResponseEntity<Paquete> crearPaquete(@RequestBody PaqueteDTO dto){
+        Paquete paquete = paqueteServicio.crear(dto);
+        return ResponseEntity.created(URI.create("/paquete/" + paquete.getIdServicio())).body(paquete);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Paquete> actualizarPaquete(@PathVariable Long id,@RequestBody PaqueteDTO dto){
+        Paquete paquete = paqueteServicio.actualizar(id, dto);
+        return ResponseEntity.ok(paquete);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> eliminarPaquete(@PathVariable Long id){
+        paqueteServicio.eliminar(id);
+        return ResponseEntity.ok("Se elimino el paquete con exito");
+    }
+
+
+
+}

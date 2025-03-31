@@ -1,0 +1,103 @@
+version: "3.8"
+
+services:
+  # eureka-sv container
+  eureka-sv:
+    build: eureka-sv
+    container_name: eureka-sv
+    ports:
+      - "8761:8761"
+    restart: unless-stopped
+    networks:
+      - clinica_network
+
+  #Contenedor para api gateway
+  api-gateway:
+    build: api-gateway
+    container_name: api-gateway
+    restart: unless-stopped
+    ports:
+      - "443:443"
+    environment:
+      EUREKA_SERVER: http://eureka-sv:8761/eureka/
+    networks:
+      - clinica_network
+
+  #Contenedor para spring-security-jwt
+  spring-security-jwt:
+    build: spring-security-jwt
+    container_name: spring-security-jwt
+    ports:
+      - "9090:8080"
+    environment:
+      BD: jdbc:mysql://root:PNwZtGnksPmQnqcQvGnqkjKCxjZZsxjs@turntable.proxy.rlwy.net:14054/railway
+      USER_BD: root
+      PASSWORD_BD: PNwZtGnksPmQnqcQvGnqkjKCxjZZsxjs
+      EUREKA_SERVER: http://eureka-sv:8761/eureka/
+      USUARIOROOT: admin
+      USUARIOPASS: admin
+    networks:
+      - clinica_network
+
+  # medpatientservice container
+  medpatientservice:
+    build: MedPatientService
+    container_name: medpatient-service
+    restart: always
+    ports:
+      - "8083:8080"
+    environment:
+      BD: jdbc:mysql://root:XhAKxsLdMWWOAEHpuEeOtEQgrXsnOpjW@switchyard.proxy.rlwy.net:12890/railway
+      USER_BD: root
+      PASSWORD_BD: XhAKxsLdMWWOAEHpuEeOtEQgrXsnOpjW
+      EUREKA_SERVER: http://eureka-sv:8761/eureka/
+    networks:
+      - clinica_network
+
+  # medicalservice container
+  medicalservice:
+    build: MedicalService
+    container_name: medicalservice
+    restart: unless-stopped
+    ports:
+      - "8082:8080"
+    environment:
+      BD: jdbc:mysql://root:ooqqWRHdjViIZkyWowZjXYEpkadQHvGF@trolley.proxy.rlwy.net:59842/railway
+      USER_BD: root
+      PASSWORD_BD: ooqqWRHdjViIZkyWowZjXYEpkadQHvGF
+      EUREKA_SERVER: http://eureka-sv:8761/eureka/
+    networks:
+      - clinica_network
+
+  # medicalconsultationservice container
+  medicalconsultationservice:
+    build: MedicalConsultationService
+    container_name: medicalconsultation-service
+    restart: unless-stopped
+    ports:
+      - "8084:8080"
+    environment:
+      BD: jdbc:mysql://root:mvScPSUEPAtUHzJPwtjyCflxWgUojVVK@hopper.proxy.rlwy.net:23590/railway
+      USER_BD: root
+      PASSWORD_BD: mvScPSUEPAtUHzJPwtjyCflxWgUojVVK
+      EUREKA_SERVER: http://eureka-sv:8761/eureka/
+    networks:
+      - clinica_network
+
+  # financeservice container
+  financeservice:
+    build: finance-service
+    restart: unless-stopped
+    ports:
+      - "8081:8080"
+    environment:
+      BD: jdbc:mysql://root:yqgYeTquDdrYEchlWkpwzTNGUWvowPIX@centerbeam.proxy.rlwy.net:42159/railway
+      USER_BD: root
+      PASSWORD_BD: yqgYeTquDdrYEchlWkpwzTNGUWvowPIX
+      EUREKA_SERVER: http://eureka-sv:8761/eureka/
+    networks:
+      - clinica_network
+
+networks:
+  clinica_network:
+    external: true

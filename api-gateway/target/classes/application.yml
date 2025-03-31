@@ -1,0 +1,24 @@
+server:
+  port: 443
+
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SERVER}
+
+security:
+  jwt:
+    key: 18779077150cd4e1767d1390cf318d5067226af509a26ae311975e9f05c7cfe6
+    user:
+      generator: AUTHJWT-BACKEND
